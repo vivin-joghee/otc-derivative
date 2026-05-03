@@ -1,0 +1,16 @@
+# ANNA-DSB Product Definitions repo (~150 MB) — clone separately, see README
+data/product_definitions/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
