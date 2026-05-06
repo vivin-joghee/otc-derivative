@@ -22,6 +22,8 @@ DSB's live API at registration time. The cloned repo cannot supply it.
 from __future__ import annotations
 
 import argparse
+import base64
+import hashlib
 import json
 import re
 import sys
@@ -53,6 +55,57 @@ CODESET_FILES = {
     "rates": "FpmlRatesReferenceRate",
     "inflation": "FpmlRatesInflationRate",
 }
+
+# Trade fields that contribute to UPI identity. These are the product-type
+# attributes (currency, reference rate, term, underlier, etc.) — *not*
+# transaction-specific fields like notional_amount, dates, or counterparty LEIs.
+# Two trades with the same template and the same values across these fields
+# are treated as the same UPI product and receive the same mock code.
+UPI_DEFINING_FIELDS: tuple[str, ...] = (
+    "notional_currency",
+    "settlement_currency",
+    "notional_currency_leg1",
+    "notional_currency_leg2",
+    "reference_rate",
+    "reference_rate_leg1",
+    "reference_rate_leg2",
+    "reference_rate_term_value",
+    "reference_rate_term_unit",
+    "reference_rate_term_leg1_value",
+    "reference_rate_term_leg1_unit",
+    "reference_rate_term_leg2_value",
+    "reference_rate_term_leg2_unit",
+    "delivery_type",
+    "debt_seniority",
+    "underlying_currency_pair",
+    "underlying_isin",
+    "underlying_index",
+    "underlying_commodity",
+    "underlying_tenor_value",
+    "underlying_tenor_unit",
+    "option_type",
+    "barrier_type",
+    "return_type",
+)
+
+
+def _mock_upi(matched_template: str, raw_trade: dict) -> str:
+    """
+    Deterministic 12-character alphanumeric mock UPI.
+
+    Real UPIs are 20-char codes issued by the DSB live API at registration
+    time and are not extractable from the cloned product-definition library.
+    This is a stable placeholder so two trades with identical product-type
+    attributes resolve to the same code across runs.
+    """
+    parts = [matched_template]
+    for f in UPI_DEFINING_FIELDS:
+        parts.append(f"{f}={raw_trade.get(f)!r}")
+    payload = "\x1f".join(parts).encode("utf-8")
+    digest = hashlib.sha256(payload).digest()
+    # base32 keeps the alphabet uppercase A-Z plus 2-7 — ISIN-like in shape.
+    return base64.b32encode(digest).decode("ascii")[:12]
+
 
 NOVEL_NOTE = (
     "Instrument type {it!r} under asset class {ac!r} has no product "
@@ -367,6 +420,7 @@ def lookup_upi(
     template = json.loads(template_path.read_text(encoding="utf-8"))
     matched_stem = _VERSION_SUFFIX_RE.sub("", template_path.stem)
     record["matched_template"] = matched_stem
+    record["upi_code"] = _mock_upi(matched_stem, raw_trade)
 
     errors, warnings = validate_attributes(raw_trade, template, codesets)
     record["validation_errors"] = errors
