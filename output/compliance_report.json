@@ -1,0 +1,1074 @@
+[
+  {
+    "trade_id": "T001",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "5493001KJTIIGC8Y1R12",
+        "valid": true,
+        "error": null
+      },
+      "other_counterparty_lei": {
+        "value": "2138002TXD6KSZ3V5X27",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      }
+    },
+    "uti_validation": {
+      "value": "5493001KJTIIGC8Y1R1220241219TRD00001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T002",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "VGRQXHF3J8VDLUA7XE92",
+        "valid": true,
+        "error": null
+      },
+      "other_counterparty_lei": {
+        "value": "9695009AXSRNHZE85Y20",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      }
+    },
+    "uti_validation": {
+      "value": "VGRQXHF3J8VDLUA7XE9220250115CDS0001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T003",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
+          "collateral_portfolio_code: missing/null",
+          "initial_margin_posted: missing/null",
+          "variation_margin_posted: missing/null"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "1VUV7VQFKUOQSJ21A208",
+        "valid": true,
+        "error": null
+      },
+      "other_counterparty_lei": {
+        "value": "4R3ZURLYISNNNMHMK608",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      }
+    },
+    "uti_validation": {
+      "value": "1VUV7VQFKUOQSJ21A20820250210FWD0001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T004",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidFormat: The number has an invalid format.)"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidFormat: The number has an invalid format.)",
+          "collateral_portfolio_code: missing/null",
+          "initial_margin_posted: missing/null",
+          "variation_margin_posted: missing/null"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "5493001KJTIIGC8Y1R12",
+        "valid": true,
+        "error": null
+      },
+      "other_counterparty_lei": {
+        "value": "MISSING_LEI",
+        "valid": false,
+        "error": "InvalidFormat: The number has an invalid format."
+      }
+    },
+    "uti_validation": {
+      "value": "5493001KJTIIGC8Y1R1220250301EQ00001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T005",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "2138002TXD6KSZ3V5X27",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      },
+      "other_counterparty_lei": {
+        "value": "VGRQXHF3J8VDLUA7XE92",
+        "valid": true,
+        "error": null
+      }
+    },
+    "uti_validation": {
+      "value": "2138002TXD6KSZ3V5X2720250115IRS0001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T006",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "uti: invalid UTI (missing)",
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "uti: invalid UTI (missing)",
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
+          "collateral_portfolio_code: missing/null",
+          "initial_margin_posted: missing/null",
+          "variation_margin_posted: missing/null"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "9695009AXSRNHZE85Y20",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      },
+      "other_counterparty_lei": {
+        "value": "1VUV7VQFKUOQSJ21A208",
+        "valid": true,
+        "error": null
+      }
+    },
+    "uti_validation": {
+      "value": null,
+      "valid": false,
+      "error": "missing"
+    }
+  },
+  {
+    "trade_id": "T007",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
+          "collateral_portfolio_code: missing/null",
+          "initial_margin_posted: missing/null",
+          "variation_margin_posted: missing/null"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "4R3ZURLYISNNNMHMK608",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      },
+      "other_counterparty_lei": {
+        "value": "5493001KJTIIGC8Y1R12",
+        "valid": true,
+        "error": null
+      }
+    },
+    "uti_validation": {
+      "value": "4R3ZURLYISNNNMHMK60820250506COM0001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T008",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "2138002TXD6KSZ3V5X27",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      },
+      "other_counterparty_lei": {
+        "value": "VGRQXHF3J8VDLUA7XE92",
+        "valid": true,
+        "error": null
+      }
+    },
+    "uti_validation": {
+      "value": "2138002TXD6KSZ3V5X2720250301SWN0001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T009",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
+          "notional_currency: not a 3-letter ISO 4217 code ('INVALID_CCY')"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
+          "notional_currency: not a 3-letter ISO 4217 code ('INVALID_CCY')",
+          "collateral_portfolio_code: missing/null",
+          "initial_margin_posted: missing/null",
+          "variation_margin_posted: missing/null"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "1VUV7VQFKUOQSJ21A208",
+        "valid": true,
+        "error": null
+      },
+      "other_counterparty_lei": {
+        "value": "9695009AXSRNHZE85Y20",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      }
+    },
+    "uti_validation": {
+      "value": "1VUV7VQFKUOQSJ21A20820251010FXO0001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T010",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "5299000J2N45DDNE4Y28",
+        "valid": true,
+        "error": null
+      },
+      "other_counterparty_lei": {
+        "value": "2138002TXD6KSZ3V5X27",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      }
+    },
+    "uti_validation": {
+      "value": "5299000J2N45DDNE4Y2820250115CDX0001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T011",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
+          "notional_currency: missing/null",
+          "notional_amount: missing/null"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
+          "notional_currency: missing/null",
+          "notional_amount: missing/null"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "VGRQXHF3J8VDLUA7XE92",
+        "valid": true,
+        "error": null
+      },
+      "other_counterparty_lei": {
+        "value": "4R3ZURLYISNNNMHMK608",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      }
+    },
+    "uti_validation": {
+      "value": "VGRQXHF3J8VDLUA7XE9220250601XCS0001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T012",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "9695009AXSRNHZE85Y20",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      },
+      "other_counterparty_lei": {
+        "value": "5493001KJTIIGC8Y1R12",
+        "valid": true,
+        "error": null
+      }
+    },
+    "uti_validation": {
+      "value": "9695009AXSRNHZE85Y2020250715TRS0001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T013",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "execution_timestamp: not ISO 8601 UTC ('2025-09-01')"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "execution_timestamp: not ISO 8601 UTC ('2025-09-01')"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "1VUV7VQFKUOQSJ21A208",
+        "valid": true,
+        "error": null
+      },
+      "other_counterparty_lei": {
+        "value": "5299000J2N45DDNE4Y28",
+        "valid": true,
+        "error": null
+      }
+    },
+    "uti_validation": {
+      "value": "1VUV7VQFKUOQSJ21A20820250901INF0001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T014",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
+          "collateral_portfolio_code: missing/null",
+          "initial_margin_posted: missing/null",
+          "variation_margin_posted: missing/null"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "4R3ZURLYISNNNMHMK608",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      },
+      "other_counterparty_lei": {
+        "value": "2138002TXD6KSZ3V5X27",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      }
+    },
+    "uti_validation": {
+      "value": "4R3ZURLYISNNNMHMK60820251120FXS0001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T015",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "2138002TXD6KSZ3V5X27",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      },
+      "other_counterparty_lei": {
+        "value": "1VUV7VQFKUOQSJ21A208",
+        "valid": true,
+        "error": null
+      }
+    },
+    "uti_validation": {
+      "value": "2138002TXD6KSZ3V5X2720250801CAP0001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T016",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
+          "collateral_portfolio_code: missing/null",
+          "initial_margin_posted: missing/null",
+          "variation_margin_posted: missing/null"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "9695009AXSRNHZE85Y20",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      },
+      "other_counterparty_lei": {
+        "value": "VGRQXHF3J8VDLUA7XE92",
+        "valid": true,
+        "error": null
+      }
+    },
+    "uti_validation": {
+      "value": "9695009AXSRNHZE85Y202025091VARSWP01",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T017",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "COMPLIANT",
+        "field_errors": [],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "collateral_portfolio_code: missing/null",
+          "initial_margin_posted: missing/null",
+          "variation_margin_posted: missing/null"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "5493001KJTIIGC8Y1R12",
+        "valid": true,
+        "error": null
+      },
+      "other_counterparty_lei": {
+        "value": "5299000J2N45DDNE4Y28",
+        "valid": true,
+        "error": null
+      }
+    },
+    "uti_validation": {
+      "value": "5493001KJTIIGC8Y1R1220251105SOV0001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T018",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "VGRQXHF3J8VDLUA7XE92",
+        "valid": true,
+        "error": null
+      },
+      "other_counterparty_lei": {
+        "value": "9695009AXSRNHZE85Y20",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      }
+    },
+    "uti_validation": {
+      "value": "VGRQXHF3J8VDLUA7XE9220251201OIS0001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T019",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
+          "collateral_portfolio_code: missing/null",
+          "initial_margin_posted: missing/null",
+          "variation_margin_posted: missing/null"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "4R3ZURLYISNNNMHMK608",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      },
+      "other_counterparty_lei": {
+        "value": "1VUV7VQFKUOQSJ21A208",
+        "valid": true,
+        "error": null
+      }
+    },
+    "uti_validation": {
+      "value": "4R3ZURLYISNNNMHMK60820260115OPT0001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T020",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
+          "collateral_portfolio_code: missing/null",
+          "initial_margin_posted: missing/null",
+          "variation_margin_posted: missing/null"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "2138002TXD6KSZ3V5X27",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      },
+      "other_counterparty_lei": {
+        "value": "4R3ZURLYISNNNMHMK608",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      }
+    },
+    "uti_validation": {
+      "value": "2138002TXD6KSZ3V5X2720260210BRR0001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T021",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "maturity_date: not a valid calendar date ('9999-99-99')"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "maturity_date: not a valid calendar date ('9999-99-99')",
+          "collateral_portfolio_code: missing/null",
+          "initial_margin_posted: missing/null",
+          "variation_margin_posted: missing/null"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "5493001KJTIIGC8Y1R12",
+        "valid": true,
+        "error": null
+      },
+      "other_counterparty_lei": {
+        "value": "VGRQXHF3J8VDLUA7XE92",
+        "valid": true,
+        "error": null
+      }
+    },
+    "uti_validation": {
+      "value": "5493001KJTIIGC8Y1R12202603010001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T022",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "9695009AXSRNHZE85Y20",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      },
+      "other_counterparty_lei": {
+        "value": "5493001KJTIIGC8Y1R12",
+        "valid": true,
+        "error": null
+      }
+    },
+    "uti_validation": {
+      "value": "9695009AXSRNHZE85Y2020260415ABS0001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T023",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
+          "collateral_portfolio_code: missing/null",
+          "initial_margin_posted: missing/null",
+          "variation_margin_posted: missing/null"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "1VUV7VQFKUOQSJ21A208",
+        "valid": true,
+        "error": null
+      },
+      "other_counterparty_lei": {
+        "value": "2138002TXD6KSZ3V5X27",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      }
+    },
+    "uti_validation": {
+      "value": "1VUV7VQFKUOQSJ21A20820260501EQF0001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T024",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "5299000J2N45DDNE4Y28",
+        "valid": true,
+        "error": null
+      },
+      "other_counterparty_lei": {
+        "value": "4R3ZURLYISNNNMHMK608",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      }
+    },
+    "uti_validation": {
+      "value": "5299000J2N45DDNE4Y2820260601IRS9999",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T025",
+    "classification_flag": "CONVENTIONAL_DERIVATIVE",
+    "regimes": {
+      "CFTC": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
+        ],
+        "applicability_note": null
+      },
+      "MAS": {
+        "status": "NONCOMPLIANT",
+        "field_errors": [
+          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
+          "collateral_portfolio_code: missing/null",
+          "initial_margin_posted: missing/null",
+          "variation_margin_posted: missing/null"
+        ],
+        "applicability_note": null
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "VGRQXHF3J8VDLUA7XE92",
+        "valid": true,
+        "error": null
+      },
+      "other_counterparty_lei": {
+        "value": "9695009AXSRNHZE85Y20",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      }
+    },
+    "uti_validation": {
+      "value": "VGRQXHF3J8VDLUA7XE9220260701FXF0001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T026",
+    "classification_flag": "NOVEL_INSTRUMENT_NO_TAXONOMY",
+    "regimes": {
+      "CFTC": {
+        "status": "CONDITIONAL",
+        "field_errors": [],
+        "applicability_note": "Prediction contract on a CFTC-regulated DCM: in-scope but classification uncertain pending CFTC ANPR 91 FR 12516. Reporting status CONDITIONAL \u2014 would only become a clean COMPLIANT once formal classification is finalised."
+      },
+      "MAS": {
+        "status": "NOT_APPLICABLE",
+        "field_errors": [],
+        "applicability_note": "Event/prediction contract: not classified as an OTC derivative under MAS trade reporting rules. Status NOT_APPLICABLE."
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "5493001KJTIIGC8Y1R12",
+        "valid": true,
+        "error": null
+      },
+      "other_counterparty_lei": {
+        "value": null,
+        "valid": false,
+        "error": "missing"
+      }
+    },
+    "uti_validation": {
+      "value": "5493001KJTIIGC8Y1R1220260301EVT00001",
+      "valid": true,
+      "error": null
+    }
+  },
+  {
+    "trade_id": "T027",
+    "classification_flag": "NOVEL_INSTRUMENT_NO_TAXONOMY",
+    "regimes": {
+      "CFTC": {
+        "status": "NOT_APPLICABLE",
+        "field_errors": [],
+        "applicability_note": "Prediction contract executed on an offshore unregulated venue (not a CFTC DCM): outside CFTC reporting scope. Status NOT_APPLICABLE."
+      },
+      "MAS": {
+        "status": "NOT_APPLICABLE",
+        "field_errors": [],
+        "applicability_note": "Event/prediction contract: not classified as an OTC derivative under MAS trade reporting rules. Status NOT_APPLICABLE."
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "VGRQXHF3J8VDLUA7XE92",
+        "valid": true,
+        "error": null
+      },
+      "other_counterparty_lei": {
+        "value": null,
+        "valid": false,
+        "error": "missing"
+      }
+    },
+    "uti_validation": {
+      "value": null,
+      "valid": false,
+      "error": "missing"
+    }
+  },
+  {
+    "trade_id": "T028",
+    "classification_flag": "NOVEL_INSTRUMENT_NO_TAXONOMY",
+    "regimes": {
+      "CFTC": {
+        "status": "CONDITIONAL",
+        "field_errors": [],
+        "applicability_note": "Prediction contract on a CFTC-regulated DCM: in-scope but classification uncertain pending CFTC ANPR 91 FR 12516. Reporting status CONDITIONAL \u2014 would only become a clean COMPLIANT once formal classification is finalised."
+      },
+      "MAS": {
+        "status": "NOT_APPLICABLE",
+        "field_errors": [],
+        "applicability_note": "Event/prediction contract: not classified as an OTC derivative under MAS trade reporting rules. Status NOT_APPLICABLE."
+      }
+    },
+    "lei_validations": {
+      "reporting_counterparty_lei": {
+        "value": "9695009AXSRNHZE85Y20",
+        "valid": false,
+        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+      },
+      "other_counterparty_lei": {
+        "value": null,
+        "valid": false,
+        "error": "missing"
+      }
+    },
+    "uti_validation": {
+      "value": "9695009AXSRNHZE85Y2020260115REG0001",
+      "valid": true,
+      "error": null
+    }
+  }
+]

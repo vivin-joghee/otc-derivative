@@ -2,8 +2,9 @@
 
 NTU MH6822 RegTech — Homework 2 implementation.
 
-This repo currently contains **Module 1** (Trade Parser & Instrument Classifier)
-and **Module 2** (UPI Lookup Engine). Modules 3, 4, and 5 are still to come.
+This repo currently contains **Module 1** (Trade Parser & Instrument Classifier),
+**Module 2** (UPI Lookup Engine), and **Module 3** (Multi-Jurisdictional
+Compliance Checker — CFTC + MAS). Modules 4 and 5 are still to come.
 
 ## Layout
 
@@ -14,18 +15,26 @@ data/
 stubs/
   module1_parser.py           # original assignment-website stubs
   module2_upi_lookup.py
+  module3_compliance.py
 src/
-  module1_parser.py           # implementation
+  module1_parser.py           # implementations
   module2_upi_lookup.py
+  module3_compliance.py
 output/
   parsed_trades.json          # Module 1 output
   upi_lookup.json             # Module 2 output
+  compliance_report.json      # Module 3 output
+requirements.txt              # python-stdnum, pycountry
 ```
 
 ## Setup
 
-1. Python 3.10+ (no third-party dependencies for Modules 1–2 — pure stdlib).
-2. Clone the ANNA-DSB product definitions library into `data/product_definitions/`:
+1. Python 3.10+.
+2. Install dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+3. Clone the ANNA-DSB product definitions library into `data/product_definitions/`:
    ```
    git clone https://github.com/ANNA-DSB/Product-Definitions.git data/product_definitions
    ```
@@ -33,8 +42,9 @@ output/
 ## Run
 
 ```
-python src/module1_parser.py   --input data/trades.json --output output/parsed_trades.json
+python src/module1_parser.py    --input data/trades.json   --output output/parsed_trades.json
 python src/module2_upi_lookup.py --trades data/trades.json --library data/product_definitions --output output/upi_lookup.json
+python src/module3_compliance.py --trades data/trades.json --upi-lookup output/upi_lookup.json --output output/compliance_report.json
 ```
 
 ## Module 1 — Trade Parser
@@ -74,6 +84,52 @@ attribute change produces a different code. Real UPIs are 20-char strings
 issued by the ANNA-DSB live API at registration and aren't extractable from
 the cloned product-definition repo (the templates are JSON Schemas, not
 records). NOVEL trades and unmatched conventional trades keep `upi_code: null`.
+
+## Module 3 — Compliance Checker (CFTC + MAS)
+
+Validates each trade against the required-field set for two regimes plus
+ISO 7064 MOD 97-10 LEI checksum and ISO 23897 UTI format. MAS adds three
+fields CFTC does not require: `collateral_portfolio_code`,
+`initial_margin_posted`, `variation_margin_posted` (a value of `0` is fine
+— it's the `null` that fails).
+
+LEI validation uses `python-stdnum` (`stdnum.lei.validate`). A
+`compute_lei_check_digits()` helper is also kept in the source for
+educational transparency. Currency validation uses `pycountry` (covers XAU).
+
+**Result distribution:**
+
+| Regime | COMPLIANT | NONCOMPLIANT | CONDITIONAL | NOT_APPLICABLE |
+|---|---|---|---|---|
+| CFTC | 1 (T017) | 24 | 2 (T026, T028 on Kalshi DCM) | 1 (T027 offshore) |
+| MAS | 0 | 25 | 0 | 3 (T026–T028) |
+
+**Why so few COMPLIANT?** The dataset was constructed with deliberate data-
+quality issues. Of the eight distinct counterparty LEIs in `trades.json`,
+**three fail ISO 7064 MOD 97-10** — `2138002TXD6KSZ3V5X27`,
+`9695009AXSRNHZE85Y20`, `4R3ZURLYISNNNMHMK608`. Only **3 conventional
+trades** have both counterparties' LEIs valid (T013, T017, T021), and
+T013/T021 fail other field checks (date-only `execution_timestamp`,
+`maturity_date: "9999-99-99"`). T017 is the lone CFTC pass; for MAS it
+fails because `collateral_portfolio_code` / `initial_margin_posted` /
+`variation_margin_posted` are explicit `null`. The marker hint
+"test LEIs are not all real; that is part of the exercise" is the
+intended teaching outcome — the engine catches it.
+
+**Jurisdictional asymmetry for prediction contracts (T026–T028):**
+- T026 (Kalshi, CFTC DCM, `CorporateTreasury` reporting party)
+  → CFTC: CONDITIONAL (in-scope but classification awaits ANPR 91 FR 12516)
+  → MAS: NOT_APPLICABLE
+- T027 (Polymarket, offshore VPN-accessed)
+  → CFTC: NOT_APPLICABLE (off-shore venue, not a CFTC DCM)
+  → MAS: NOT_APPLICABLE
+- T028 (Kalshi, CFTC DCM, EU FinTech)
+  → CFTC: CONDITIONAL
+  → MAS: NOT_APPLICABLE
+
+LEI and UTI validation results are also surfaced at the top level of each
+per-trade record (`lei_validations` and `uti_validation`) so they can be
+audited independently of the per-regime status.
 
 ## Acknowledgement
 
