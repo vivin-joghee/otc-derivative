@@ -127,9 +127,13 @@ intended teaching outcome — the engine catches it.
   → CFTC: CONDITIONAL
   → MAS: NOT_APPLICABLE
 
-LEI and UTI validation results are also surfaced at the top level of each
-per-trade record (`lei_validations` and `uti_validation`) so they can be
-audited independently of the per-regime status.
+**Audit trail** — every required field appears in the per-regime
+`field_validations` block as `{value, valid, error}`, regardless of whether
+it passed or failed. NOVEL trades still get the full validations populated
+even though their status is set by the applicability rule, so the report
+makes clear *why* the trade isn't reportable cleanly (e.g. T026 shows
+`effective_date: missing/null` because event contracts use `settlement_date`
+instead — informative, but doesn't drive the CONDITIONAL status).
 
 ## Acknowledgement
 

@@ -2,8 +2,9 @@
 Module 3: Multi-Jurisdictional Compliance Checker.
 
 For every trade, evaluates compliance under CFTC and MAS:
+  - validates every required field with a {value, valid, error} record,
+    so passes are visible alongside failures (full audit trail)
   - validates LEIs (ISO 7064 MOD 97-10) and UTI (ISO 23897)
-  - checks each regime's required-field set is present and well-formed
   - applies the jurisdictional asymmetry rule for prediction contracts
     (T026-T028): CFTC-regulated DCM -> CONDITIONAL; offshore -> NOT_APPLICABLE
     on CFTC; MAS treats event contracts as out-of-scope -> NOT_APPLICABLE.
@@ -20,20 +21,18 @@ import sys
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, Callable, Optional
 
 import pycountry
 from stdnum import lei as stdnum_lei
 from stdnum.exceptions import ValidationError as StdnumValidationError
 
-# Allow `from module1_parser import ...` whether run as a script or imported.
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from module1_parser import ParsedTrade, parse_trades_file  # noqa: E402
 
 
 # --- constants ----------------------------------------------------------
 
-# Per the brief: "NEW, MODIFY, etc." — accept the common Reg-45 / EMIR action types.
 ACTION_TYPE_VALUES: frozenset[str] = frozenset(
     {"NEW", "MODIFY", "CANCEL", "CORRECT", "TERMINATE", "REVIVE"}
 )
@@ -50,7 +49,6 @@ MAS_REQUIRED_FIELDS: tuple[str, ...] = CFTC_REQUIRED_FIELDS + (
 
 _ISO8601_UTC_RE = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$")
 _ISO_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
-_LEI_FORMAT_RE = re.compile(r"^[A-Z0-9]{20}$")  # syntactic shape only
 _UTI_NAMESPACE_RE = re.compile(r"^[A-Z0-9]{20}$")
 _UTI_SUFFIX_RE = re.compile(r"^[A-Z0-9-]*$")
 
@@ -58,32 +56,24 @@ _UTI_SUFFIX_RE = re.compile(r"^[A-Z0-9-]*$")
 # --- LEI -----------------------------------------------------------------
 
 def compute_lei_check_digits(body: str) -> str:
-    """
-    ISO 7064 MOD 97-10 check digits for an LEI body (18 chars). Returns a
-    two-character zero-padded string. Kept for educational transparency
-    alongside the stdnum-based validate_lei() below.
-    """
-    numeric_chars: list[str] = []
+    """ISO 7064 MOD 97-10 check digits for an LEI body (18 chars)."""
+    chars: list[str] = []
     for c in body:
         if c.isdigit():
-            numeric_chars.append(c)
+            chars.append(c)
         elif "A" <= c <= "Z":
-            numeric_chars.append(str(ord(c) - ord("A") + 10))
+            chars.append(str(ord(c) - ord("A") + 10))
         else:
             raise ValueError(f"invalid LEI body character: {c!r}")
-    numeric_chars.append("00")
-    n = int("".join(numeric_chars))
+    chars.append("00")
+    n = int("".join(chars))
     return f"{98 - (n % 97):02d}"
 
 
 def validate_lei(lei: Optional[str]) -> tuple[bool, str]:
-    """
-    Validate a 20-char LEI per ISO 17442 + ISO 7064 MOD 97-10 checksum.
-    Returns (is_valid, error_message). Empty error when valid.
-    Uses python-stdnum for the canonical implementation.
-    """
+    """20-char LEI per ISO 17442 + ISO 7064 MOD 97-10 (via python-stdnum)."""
     if lei is None:
-        return False, "missing"
+        return False, "missing/null"
     if not isinstance(lei, str):
         return False, f"expected string, got {type(lei).__name__}"
     try:
@@ -96,15 +86,9 @@ def validate_lei(lei: Optional[str]) -> tuple[bool, str]:
 # --- UTI -----------------------------------------------------------------
 
 def validate_uti(uti: Optional[str], reporting_lei: Optional[str]) -> tuple[bool, str]:
-    """
-    ISO 23897 UTI:
-      - total length <= 52
-      - first 20 chars are a syntactically valid LEI shape
-      - first 20 chars equal the reporting counterparty's LEI
-      - suffix (chars 21+) contains only [A-Z0-9-]
-    """
+    """ISO 23897 UTI: <=52 chars; first 20 = reporting LEI shape; suffix [A-Z0-9-]."""
     if uti is None:
-        return False, "missing"
+        return False, "missing/null"
     if not isinstance(uti, str):
         return False, f"expected string, got {type(uti).__name__}"
     if len(uti) > 52:
@@ -125,139 +109,135 @@ def validate_uti(uti: Optional[str], reporting_lei: Optional[str]) -> tuple[bool
     return True, ""
 
 
-# --- field-level validators ---------------------------------------------
+# --- field-level validators (pure: value -> (valid, error)) -------------
 
-def _check_iso8601_utc(name: str, value: Any, errors: list[str]) -> None:
+def _validate_iso8601_utc(value: Any) -> tuple[bool, str]:
     if value is None:
-        errors.append(f"{name}: missing/null")
-        return
-    if not isinstance(value, str) or not _ISO8601_UTC_RE.match(value):
-        errors.append(f"{name}: not ISO 8601 UTC ({value!r})")
-        return
+        return False, "missing/null"
+    if not isinstance(value, str):
+        return False, f"expected string, got {type(value).__name__}"
+    if not _ISO8601_UTC_RE.match(value):
+        return False, f"not ISO 8601 UTC ({value!r}); expected YYYY-MM-DDTHH:MM:SSZ"
     try:
         datetime.fromisoformat(value.replace("Z", "+00:00"))
+        return True, ""
     except ValueError:
-        errors.append(f"{name}: not a valid datetime ({value!r})")
+        return False, f"not a valid datetime ({value!r})"
 
 
-def _check_iso_date(name: str, value: Any, errors: list[str]) -> None:
+def _validate_iso_date(value: Any) -> tuple[bool, str]:
     if value is None:
-        errors.append(f"{name}: missing/null")
-        return
-    if not isinstance(value, str) or not _ISO_DATE_RE.match(value):
-        errors.append(f"{name}: not a YYYY-MM-DD date ({value!r})")
-        return
+        return False, "missing/null"
+    if not isinstance(value, str):
+        return False, f"expected string, got {type(value).__name__}"
+    if not _ISO_DATE_RE.match(value):
+        return False, f"not YYYY-MM-DD ({value!r})"
     try:
         datetime.strptime(value, "%Y-%m-%d")
+        return True, ""
     except ValueError:
-        errors.append(f"{name}: not a valid calendar date ({value!r})")
+        return False, f"not a valid calendar date ({value!r})"
 
 
-def _check_currency(name: str, value: Any, errors: list[str]) -> None:
+def _validate_currency(value: Any) -> tuple[bool, str]:
     if value is None:
-        errors.append(f"{name}: missing/null")
-        return
+        return False, "missing/null"
     if not isinstance(value, str) or len(value) != 3:
-        errors.append(f"{name}: not a 3-letter ISO 4217 code ({value!r})")
-        return
+        return False, f"not a 3-letter ISO 4217 code ({value!r})"
     if pycountry.currencies.get(alpha_3=value) is None:
-        errors.append(f"{name}: not a recognised ISO 4217 currency ({value!r})")
+        return False, f"not a recognised ISO 4217 currency ({value!r})"
+    return True, ""
 
 
-def _check_positive_number(name: str, value: Any, errors: list[str]) -> None:
+def _validate_positive_number(value: Any) -> tuple[bool, str]:
     if value is None:
-        errors.append(f"{name}: missing/null")
-        return
+        return False, "missing/null"
     if isinstance(value, bool) or not isinstance(value, (int, float)):
-        errors.append(f"{name}: not numeric ({type(value).__name__})")
-        return
+        return False, f"not numeric ({type(value).__name__})"
     if value <= 0:
-        errors.append(f"{name}: must be > 0 (got {value})")
+        return False, f"must be > 0 (got {value})"
+    return True, ""
 
 
-def _check_action_type(value: Any, errors: list[str]) -> None:
+def _validate_action_type(value: Any) -> tuple[bool, str]:
     if value is None:
-        errors.append("action_type: missing/null")
-        return
-    if not isinstance(value, str) or value not in ACTION_TYPE_VALUES:
-        errors.append(f"action_type: not in {sorted(ACTION_TYPE_VALUES)} ({value!r})")
+        return False, "missing/null"
+    if not isinstance(value, str):
+        return False, f"expected string, got {type(value).__name__}"
+    if value not in ACTION_TYPE_VALUES:
+        return False, f"not in {sorted(ACTION_TYPE_VALUES)} ({value!r})"
+    return True, ""
 
 
-def _check_cleared(value: Any, errors: list[str]) -> None:
+def _validate_cleared(value: Any) -> tuple[bool, str]:
     if value is None:
-        errors.append("cleared: missing/null")
-        return
+        return False, "missing/null"
     if not isinstance(value, bool):
-        errors.append(f"cleared: not boolean ({type(value).__name__})")
+        return False, f"not boolean ({type(value).__name__})"
+    return True, ""
 
 
-def _check_collateral_portfolio_code(value: Any, errors: list[str]) -> None:
+def _validate_collateral_portfolio_code(value: Any) -> tuple[bool, str]:
     if value is None:
-        errors.append("collateral_portfolio_code: missing/null")
-        return
+        return False, "missing/null"
     if not isinstance(value, str) or not value.strip():
-        errors.append(f"collateral_portfolio_code: not a non-empty string ({value!r})")
+        return False, f"not a non-empty string ({value!r})"
+    return True, ""
 
 
-def _check_initial_margin(value: Any, errors: list[str]) -> None:
+def _validate_initial_margin(value: Any) -> tuple[bool, str]:
     if value is None:
-        errors.append("initial_margin_posted: missing/null")
-        return
+        return False, "missing/null"
     if isinstance(value, bool) or not isinstance(value, (int, float)):
-        errors.append(f"initial_margin_posted: not numeric ({type(value).__name__})")
-        return
+        return False, f"not numeric ({type(value).__name__})"
     if value < 0:
-        errors.append(f"initial_margin_posted: must be >= 0 (got {value})")
+        return False, f"must be >= 0 (got {value})"
+    return True, ""
 
 
-def _check_variation_margin(value: Any, errors: list[str]) -> None:
+def _validate_variation_margin(value: Any) -> tuple[bool, str]:
     # Variation margin can legitimately be negative (mark-to-market movement).
     if value is None:
-        errors.append("variation_margin_posted: missing/null")
-        return
+        return False, "missing/null"
     if isinstance(value, bool) or not isinstance(value, (int, float)):
-        errors.append(f"variation_margin_posted: not numeric ({type(value).__name__})")
+        return False, f"not numeric ({type(value).__name__})"
+    return True, ""
 
 
-def _check_upi_present(upi_result: dict | None, errors: list[str]) -> None:
+# --- check-runner helpers (build per-field {value, valid, error} records) -
+
+def _record(value: Any, validator: Callable[[Any], tuple[bool, str]]) -> dict[str, Any]:
+    valid, err = validator(value)
+    return {"value": value, "valid": valid, "error": err if err else None}
+
+
+def _record_uti(uti: Any, reporting_lei: Any) -> dict[str, Any]:
+    valid, err = validate_uti(uti, reporting_lei)
+    return {"value": uti, "valid": valid, "error": err if err else None}
+
+
+def _record_upi(upi_result: dict | None) -> dict[str, Any]:
     """
-    UPI is treated as present iff Module 2 produced a non-null upi_code.
-    For NOVEL trades (NO_PRODUCT_DEFINITION) and unmatched conventional
-    trades, the code is null and this fails.
+    UPI is treated as 'present' iff Module 2 produced a non-null upi_code.
+    NOVEL trades and unmatched conventional trades will have upi_code=None.
     """
-    if upi_result is None or upi_result.get("upi_code") is None:
-        errors.append("upi: missing/null (Module 2 did not assign a UPI)")
-
-
-def _check_lei_pair(raw_trade: dict, errors: list[str],
-                    lei_results: dict[str, dict]) -> None:
-    """Per-LEI validation, recording per-counterparty result for the top-level block."""
-    for fname in ("reporting_counterparty_lei", "other_counterparty_lei"):
-        value = raw_trade.get(fname)
-        ok, err = validate_lei(value)
-        lei_results[fname] = {"value": value, "valid": ok, "error": err if err else None}
-        if not ok:
-            errors.append(f"{fname}: invalid LEI ({err})")
-
-
-def _check_uti_field(raw_trade: dict, errors: list[str], uti_result: dict) -> None:
-    value = raw_trade.get("uti")
-    reporting_lei = raw_trade.get("reporting_counterparty_lei")
-    ok, err = validate_uti(value, reporting_lei)
-    uti_result["value"] = value
-    uti_result["valid"] = ok
-    uti_result["error"] = err if err else None
-    if not ok:
-        errors.append(f"uti: invalid UTI ({err})")
+    value = (upi_result or {}).get("upi_code")
+    if value is None:
+        return {
+            "value": None,
+            "valid": False,
+            "error": "missing/null (Module 2 did not assign a UPI)",
+        }
+    return {"value": value, "valid": True, "error": None}
 
 
 # --- ComplianceResult ----------------------------------------------------
 
 @dataclass
 class ComplianceResult:
-    status: str
-    field_errors: list[str] = field(default_factory=list)
+    status: str                                    # COMPLIANT | NONCOMPLIANT | CONDITIONAL | NOT_APPLICABLE
     applicability_note: Optional[str] = None
+    field_validations: dict[str, dict] = field(default_factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -267,133 +247,110 @@ class ComplianceResult:
 
 _NOVEL_CFTC_NOTE_DCM = (
     "Prediction contract on a CFTC-regulated DCM: in-scope but classification "
-    "uncertain pending CFTC ANPR 91 FR 12516. Reporting status CONDITIONAL — "
-    "would only become a clean COMPLIANT once formal classification is finalised."
+    "uncertain pending CFTC ANPR 91 FR 12516. Status CONDITIONAL — would only "
+    "become COMPLIANT once formal classification is finalised. Field "
+    "validations are still reported below for transparency."
 )
 _NOVEL_CFTC_NOTE_OFFSHORE = (
     "Prediction contract executed on an offshore unregulated venue (not a CFTC "
-    "DCM): outside CFTC reporting scope. Status NOT_APPLICABLE."
+    "DCM): outside CFTC reporting scope. Status NOT_APPLICABLE. Field "
+    "validations are still reported below for transparency."
 )
 _NOVEL_MAS_NOTE = (
     "Event/prediction contract: not classified as an OTC derivative under MAS "
-    "trade reporting rules. Status NOT_APPLICABLE."
+    "trade reporting rules. Status NOT_APPLICABLE. Field validations are still "
+    "reported below for transparency."
 )
 
 
-def _validate_common_fields(raw_trade: dict, errors: list[str],
-                            lei_results: dict, uti_result: dict,
-                            upi_result: dict | None) -> None:
-    """
-    Validates the 11 fields common to CFTC and MAS. Mutates the passed-in
-    `errors`, `lei_results`, and `uti_result` containers.
-    """
-    _check_uti_field(raw_trade, errors, uti_result)
-    _check_upi_present(upi_result, errors)
-    _check_lei_pair(raw_trade, errors, lei_results)
-    _check_iso8601_utc("execution_timestamp", raw_trade.get("execution_timestamp"), errors)
-    _check_iso_date("effective_date", raw_trade.get("effective_date"), errors)
-    _check_iso_date("maturity_date", raw_trade.get("maturity_date"), errors)
-    _check_currency("notional_currency", raw_trade.get("notional_currency"), errors)
-    _check_positive_number("notional_amount", raw_trade.get("notional_amount"), errors)
-    _check_action_type(raw_trade.get("action_type"), errors)
-    _check_cleared(raw_trade.get("cleared"), errors)
+def _build_common_field_validations(raw_trade: dict,
+                                    upi_result: dict | None) -> dict[str, dict]:
+    """The 11 fields required by both CFTC and MAS."""
+    return {
+        "uti": _record_uti(raw_trade.get("uti"), raw_trade.get("reporting_counterparty_lei")),
+        "upi": _record_upi(upi_result),
+        "reporting_counterparty_lei": _record(raw_trade.get("reporting_counterparty_lei"), validate_lei),
+        "other_counterparty_lei": _record(raw_trade.get("other_counterparty_lei"), validate_lei),
+        "execution_timestamp": _record(raw_trade.get("execution_timestamp"), _validate_iso8601_utc),
+        "effective_date": _record(raw_trade.get("effective_date"), _validate_iso_date),
+        "maturity_date": _record(raw_trade.get("maturity_date"), _validate_iso_date),
+        "notional_currency": _record(raw_trade.get("notional_currency"), _validate_currency),
+        "notional_amount": _record(raw_trade.get("notional_amount"), _validate_positive_number),
+        "action_type": _record(raw_trade.get("action_type"), _validate_action_type),
+        "cleared": _record(raw_trade.get("cleared"), _validate_cleared),
+    }
 
 
-def check_cftc_compliance(parsed_trade: ParsedTrade, upi_result: dict | None,
-                          raw_trade: dict,
-                          lei_results: dict | None = None,
-                          uti_result: dict | None = None) -> ComplianceResult:
+def check_cftc_compliance(parsed_trade: ParsedTrade,
+                          upi_result: dict | None,
+                          raw_trade: dict) -> ComplianceResult:
     """
-    CFTC compliance evaluation. Mutates lei_results / uti_result so the caller
-    can reuse them in the per-trade record (avoids duplicating identifier
-    validation across regimes).
+    EventContract on CFTC DCM -> CONDITIONAL.
+    EventContract elsewhere   -> NOT_APPLICABLE.
+    Conventional derivative   -> COMPLIANT iff every field passes, else NONCOMPLIANT.
     """
-    if lei_results is None:
-        lei_results = {}
-    if uti_result is None:
-        uti_result = {}
+    fv = _build_common_field_validations(raw_trade, upi_result)
 
     if parsed_trade.classification_flag == "NOVEL_INSTRUMENT_NO_TAXONOMY":
         platform_type = (raw_trade.get("platform_type") or "")
         if "CFTC" in platform_type or "DCM" in platform_type:
             return ComplianceResult(
                 status="CONDITIONAL",
-                field_errors=[],
                 applicability_note=_NOVEL_CFTC_NOTE_DCM,
+                field_validations=fv,
             )
         return ComplianceResult(
             status="NOT_APPLICABLE",
-            field_errors=[],
             applicability_note=_NOVEL_CFTC_NOTE_OFFSHORE,
+            field_validations=fv,
         )
 
-    errors: list[str] = []
-    _validate_common_fields(raw_trade, errors, lei_results, uti_result, upi_result)
-    status = "COMPLIANT" if not errors else "NONCOMPLIANT"
-    return ComplianceResult(status=status, field_errors=errors)
+    status = "COMPLIANT" if all(v["valid"] for v in fv.values()) else "NONCOMPLIANT"
+    return ComplianceResult(status=status, field_validations=fv)
 
 
-def check_mas_compliance(parsed_trade: ParsedTrade, upi_result: dict | None,
-                         raw_trade: dict,
-                         lei_results: dict | None = None,
-                         uti_result: dict | None = None) -> ComplianceResult:
+def check_mas_compliance(parsed_trade: ParsedTrade,
+                         upi_result: dict | None,
+                         raw_trade: dict) -> ComplianceResult:
     """
-    MAS compliance evaluation. MAS additionally requires the three collateral /
-    margin fields (which CFTC does not).
+    EventContract -> NOT_APPLICABLE (out of MAS scope).
+    Conventional derivative -> COMPLIANT iff every field passes, else NONCOMPLIANT.
+    MAS additionally requires the three collateral / margin fields (a value of
+    zero is fine; null is what fails).
     """
-    if lei_results is None:
-        lei_results = {}
-    if uti_result is None:
-        uti_result = {}
+    fv = _build_common_field_validations(raw_trade, upi_result)
+    fv["collateral_portfolio_code"] = _record(
+        raw_trade.get("collateral_portfolio_code"), _validate_collateral_portfolio_code,
+    )
+    fv["initial_margin_posted"] = _record(
+        raw_trade.get("initial_margin_posted"), _validate_initial_margin,
+    )
+    fv["variation_margin_posted"] = _record(
+        raw_trade.get("variation_margin_posted"), _validate_variation_margin,
+    )
 
     if parsed_trade.classification_flag == "NOVEL_INSTRUMENT_NO_TAXONOMY":
         return ComplianceResult(
             status="NOT_APPLICABLE",
-            field_errors=[],
             applicability_note=_NOVEL_MAS_NOTE,
+            field_validations=fv,
         )
 
-    errors: list[str] = []
-    _validate_common_fields(raw_trade, errors, lei_results, uti_result, upi_result)
-    _check_collateral_portfolio_code(raw_trade.get("collateral_portfolio_code"), errors)
-    _check_initial_margin(raw_trade.get("initial_margin_posted"), errors)
-    _check_variation_margin(raw_trade.get("variation_margin_posted"), errors)
-    status = "COMPLIANT" if not errors else "NONCOMPLIANT"
-    return ComplianceResult(status=status, field_errors=errors)
+    status = "COMPLIANT" if all(v["valid"] for v in fv.values()) else "NONCOMPLIANT"
+    return ComplianceResult(status=status, field_validations=fv)
 
 
 # --- top-level orchestration --------------------------------------------
 
-def evaluate_trade(parsed_trade: ParsedTrade, upi_result: dict | None,
+def evaluate_trade(parsed_trade: ParsedTrade,
+                   upi_result: dict | None,
                    raw_trade: dict) -> dict[str, Any]:
-    """
-    Build the full per-trade compliance record. LEI and UTI validation are
-    performed once and surfaced at the top level (regime-agnostic), then
-    each regime contributes its own status + field_errors block.
-    """
-    lei_results: dict[str, dict] = {}
-    uti_result: dict[str, Any] = {}
-
-    cftc = check_cftc_compliance(parsed_trade, upi_result, raw_trade, lei_results, uti_result)
-    # Run MAS with fresh per-regime error containers but reuse identifier results.
-    mas_lei: dict = {}
-    mas_uti: dict = {}
-    mas = check_mas_compliance(parsed_trade, upi_result, raw_trade, mas_lei, mas_uti)
-
-    # If CFTC was the applicability path (NOVEL), lei_results / uti_result may
-    # be empty. Run the identifier checks regardless so the top-level block is
-    # always populated for transparency (per design choice 4).
-    if not lei_results:
-        _check_lei_pair(raw_trade, [], lei_results)
-    if not uti_result:
-        _check_uti_field(raw_trade, [], uti_result)
-
+    cftc = check_cftc_compliance(parsed_trade, upi_result, raw_trade)
+    mas = check_mas_compliance(parsed_trade, upi_result, raw_trade)
     return {
         "trade_id": parsed_trade.trade_id,
         "classification_flag": parsed_trade.classification_flag,
         "regimes": {"CFTC": cftc.to_dict(), "MAS": mas.to_dict()},
-        "lei_validations": lei_results,
-        "uti_validation": uti_result,
     }
 
 
@@ -428,9 +385,11 @@ def main(argv: list[str] | None = None) -> int:
             r["regimes"]["CFTC"]["status"], 0) + 1
         mas_status[r["regimes"]["MAS"]["status"]] = mas_status.get(
             r["regimes"]["MAS"]["status"], 0) + 1
-        if any(not v.get("valid") for v in r["lei_validations"].values()):
+        cftc_fv = r["regimes"]["CFTC"]["field_validations"]
+        if not cftc_fv["reporting_counterparty_lei"]["valid"] or \
+           not cftc_fv["other_counterparty_lei"]["valid"]:
             n_lei_invalid += 1
-        if not r["uti_validation"].get("valid"):
+        if not cftc_fv["uti"]["valid"]:
             n_uti_invalid += 1
 
     print(f"Compliance report: {len(out)} trades -> {args.output}")

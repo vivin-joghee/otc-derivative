@@ -5,35 +5,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "5493001KJTIIGC8Y1R1220241219TRD00001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "F5MHTX6XHEUV",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "5493001KJTIIGC8Y1R12",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "2138002TXD6KSZ3V5X27",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2024-12-19T09:35:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2024-12-21",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2029-12-21",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 50000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": true,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "5493001KJTIIGC8Y1R1220241219TRD00001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "F5MHTX6XHEUV",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "5493001KJTIIGC8Y1R12",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "2138002TXD6KSZ3V5X27",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2024-12-19T09:35:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2024-12-21",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2029-12-21",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 50000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": true,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": "PORT-A123",
+            "valid": true,
+            "error": null
+          },
+          "initial_margin_posted": {
+            "value": 1250000,
+            "valid": true,
+            "error": null
+          },
+          "variation_margin_posted": {
+            "value": 0,
+            "valid": true,
+            "error": null
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "5493001KJTIIGC8Y1R12",
-        "valid": true,
-        "error": null
-      },
-      "other_counterparty_lei": {
-        "value": "2138002TXD6KSZ3V5X27",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      }
-    },
-    "uti_validation": {
-      "value": "5493001KJTIIGC8Y1R1220241219TRD00001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -42,35 +148,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "VGRQXHF3J8VDLUA7XE9220250115CDS0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "FKIH3MDQSZMM",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "VGRQXHF3J8VDLUA7XE92",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "9695009AXSRNHZE85Y20",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2025-01-15T14:22:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-01-17",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2030-01-17",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "EUR",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 10000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "VGRQXHF3J8VDLUA7XE9220250115CDS0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "FKIH3MDQSZMM",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "VGRQXHF3J8VDLUA7XE92",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "9695009AXSRNHZE85Y20",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2025-01-15T14:22:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-01-17",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2030-01-17",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "EUR",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 10000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": "PORT-B456",
+            "valid": true,
+            "error": null
+          },
+          "initial_margin_posted": {
+            "value": 320000,
+            "valid": true,
+            "error": null
+          },
+          "variation_margin_posted": {
+            "value": -15000,
+            "valid": true,
+            "error": null
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "VGRQXHF3J8VDLUA7XE92",
-        "valid": true,
-        "error": null
-      },
-      "other_counterparty_lei": {
-        "value": "9695009AXSRNHZE85Y20",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      }
-    },
-    "uti_validation": {
-      "value": "VGRQXHF3J8VDLUA7XE9220250115CDS0001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -79,38 +291,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "1VUV7VQFKUOQSJ21A20820250210FWD0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "7DC7Z7NNFHJS",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "1VUV7VQFKUOQSJ21A208",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "4R3ZURLYISNNNMHMK608",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2025-02-10T11:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-02-12",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2025-08-12",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 20000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
-          "collateral_portfolio_code: missing/null",
-          "initial_margin_posted: missing/null",
-          "variation_margin_posted: missing/null"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "1VUV7VQFKUOQSJ21A20820250210FWD0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "7DC7Z7NNFHJS",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "1VUV7VQFKUOQSJ21A208",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "4R3ZURLYISNNNMHMK608",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2025-02-10T11:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-02-12",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2025-08-12",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 20000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "initial_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "variation_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "1VUV7VQFKUOQSJ21A208",
-        "valid": true,
-        "error": null
-      },
-      "other_counterparty_lei": {
-        "value": "4R3ZURLYISNNNMHMK608",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      }
-    },
-    "uti_validation": {
-      "value": "1VUV7VQFKUOQSJ21A20820250210FWD0001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -119,38 +434,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidFormat: The number has an invalid format.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "5493001KJTIIGC8Y1R1220250301EQ00001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "SAHR7EC3NB27",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "5493001KJTIIGC8Y1R12",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "MISSING_LEI",
+            "valid": false,
+            "error": "InvalidFormat: The number has an invalid format."
+          },
+          "execution_timestamp": {
+            "value": "2025-03-01T15:30:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-03-03",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2025-09-19",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 5000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidFormat: The number has an invalid format.)",
-          "collateral_portfolio_code: missing/null",
-          "initial_margin_posted: missing/null",
-          "variation_margin_posted: missing/null"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "5493001KJTIIGC8Y1R1220250301EQ00001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "SAHR7EC3NB27",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "5493001KJTIIGC8Y1R12",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "MISSING_LEI",
+            "valid": false,
+            "error": "InvalidFormat: The number has an invalid format."
+          },
+          "execution_timestamp": {
+            "value": "2025-03-01T15:30:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-03-03",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2025-09-19",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 5000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "initial_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "variation_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "5493001KJTIIGC8Y1R12",
-        "valid": true,
-        "error": null
-      },
-      "other_counterparty_lei": {
-        "value": "MISSING_LEI",
-        "valid": false,
-        "error": "InvalidFormat: The number has an invalid format."
-      }
-    },
-    "uti_validation": {
-      "value": "5493001KJTIIGC8Y1R1220250301EQ00001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -159,35 +577,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "2138002TXD6KSZ3V5X2720250115IRS0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "6JOX3VY6BWB6",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "2138002TXD6KSZ3V5X27",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "VGRQXHF3J8VDLUA7XE92",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2025-01-15T09:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-01-17",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2035-01-17",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "GBP",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 75000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": true,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "2138002TXD6KSZ3V5X2720250115IRS0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "6JOX3VY6BWB6",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "2138002TXD6KSZ3V5X27",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "VGRQXHF3J8VDLUA7XE92",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2025-01-15T09:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-01-17",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2035-01-17",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "GBP",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 75000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": true,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": "PORT-C789",
+            "valid": true,
+            "error": null
+          },
+          "initial_margin_posted": {
+            "value": 2100000,
+            "valid": true,
+            "error": null
+          },
+          "variation_margin_posted": {
+            "value": 50000,
+            "valid": true,
+            "error": null
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "2138002TXD6KSZ3V5X27",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      },
-      "other_counterparty_lei": {
-        "value": "VGRQXHF3J8VDLUA7XE92",
-        "valid": true,
-        "error": null
-      }
-    },
-    "uti_validation": {
-      "value": "2138002TXD6KSZ3V5X2720250115IRS0001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -196,40 +720,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "uti: invalid UTI (missing)",
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "upi": {
+            "value": "C2JK4QMQJPAP",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "9695009AXSRNHZE85Y20",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "1VUV7VQFKUOQSJ21A208",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2025-04-01T10:15:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-04-03",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2030-04-03",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "EUR",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 100000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "uti: invalid UTI (missing)",
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
-          "collateral_portfolio_code: missing/null",
-          "initial_margin_posted: missing/null",
-          "variation_margin_posted: missing/null"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "upi": {
+            "value": "C2JK4QMQJPAP",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "9695009AXSRNHZE85Y20",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "1VUV7VQFKUOQSJ21A208",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2025-04-01T10:15:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-04-03",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2030-04-03",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "EUR",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 100000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "initial_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "variation_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "9695009AXSRNHZE85Y20",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      },
-      "other_counterparty_lei": {
-        "value": "1VUV7VQFKUOQSJ21A208",
-        "valid": true,
-        "error": null
-      }
-    },
-    "uti_validation": {
-      "value": null,
-      "valid": false,
-      "error": "missing"
     }
   },
   {
@@ -238,38 +863,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "4R3ZURLYISNNNMHMK60820250506COM0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "2BGEQSCRKPM5",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "4R3ZURLYISNNNMHMK608",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "5493001KJTIIGC8Y1R12",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2025-05-06T13:45:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-05-08",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2026-05-08",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "XAU",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 5000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
-          "collateral_portfolio_code: missing/null",
-          "initial_margin_posted: missing/null",
-          "variation_margin_posted: missing/null"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "4R3ZURLYISNNNMHMK60820250506COM0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "2BGEQSCRKPM5",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "4R3ZURLYISNNNMHMK608",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "5493001KJTIIGC8Y1R12",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2025-05-06T13:45:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-05-08",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2026-05-08",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "XAU",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 5000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "initial_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "variation_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "4R3ZURLYISNNNMHMK608",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      },
-      "other_counterparty_lei": {
-        "value": "5493001KJTIIGC8Y1R12",
-        "valid": true,
-        "error": null
-      }
-    },
-    "uti_validation": {
-      "value": "4R3ZURLYISNNNMHMK60820250506COM0001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -278,35 +1006,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "2138002TXD6KSZ3V5X2720250301SWN0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "6EIZIVTDWLBW",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "2138002TXD6KSZ3V5X27",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "VGRQXHF3J8VDLUA7XE92",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2025-03-01T08:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-03-03",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2025-09-01",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 200000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "2138002TXD6KSZ3V5X2720250301SWN0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "6EIZIVTDWLBW",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "2138002TXD6KSZ3V5X27",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "VGRQXHF3J8VDLUA7XE92",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2025-03-01T08:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-03-03",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2025-09-01",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 200000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": "PORT-D012",
+            "valid": true,
+            "error": null
+          },
+          "initial_margin_posted": {
+            "value": 4500000,
+            "valid": true,
+            "error": null
+          },
+          "variation_margin_posted": {
+            "value": 0,
+            "valid": true,
+            "error": null
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "2138002TXD6KSZ3V5X27",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      },
-      "other_counterparty_lei": {
-        "value": "VGRQXHF3J8VDLUA7XE92",
-        "valid": true,
-        "error": null
-      }
-    },
-    "uti_validation": {
-      "value": "2138002TXD6KSZ3V5X2720250301SWN0001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -315,40 +1149,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
-          "notional_currency: not a 3-letter ISO 4217 code ('INVALID_CCY')"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "1VUV7VQFKUOQSJ21A20820251010FXO0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "U4EVYHSS4UPN",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "1VUV7VQFKUOQSJ21A208",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "9695009AXSRNHZE85Y20",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2025-10-10T12:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-10-14",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2026-01-14",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "INVALID_CCY",
+            "valid": false,
+            "error": "not a 3-letter ISO 4217 code ('INVALID_CCY')"
+          },
+          "notional_amount": {
+            "value": 25000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
-          "notional_currency: not a 3-letter ISO 4217 code ('INVALID_CCY')",
-          "collateral_portfolio_code: missing/null",
-          "initial_margin_posted: missing/null",
-          "variation_margin_posted: missing/null"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "1VUV7VQFKUOQSJ21A20820251010FXO0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "U4EVYHSS4UPN",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "1VUV7VQFKUOQSJ21A208",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "9695009AXSRNHZE85Y20",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2025-10-10T12:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-10-14",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2026-01-14",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "INVALID_CCY",
+            "valid": false,
+            "error": "not a 3-letter ISO 4217 code ('INVALID_CCY')"
+          },
+          "notional_amount": {
+            "value": 25000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "initial_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "variation_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "1VUV7VQFKUOQSJ21A208",
-        "valid": true,
-        "error": null
-      },
-      "other_counterparty_lei": {
-        "value": "9695009AXSRNHZE85Y20",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      }
-    },
-    "uti_validation": {
-      "value": "1VUV7VQFKUOQSJ21A20820251010FXO0001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -357,35 +1292,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "5299000J2N45DDNE4Y2820250115CDX0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "7Q7W5TEOCPRW",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "5299000J2N45DDNE4Y28",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "2138002TXD6KSZ3V5X27",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2025-01-15T16:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-01-20",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2030-12-20",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 30000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": true,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "5299000J2N45DDNE4Y2820250115CDX0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "7Q7W5TEOCPRW",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "5299000J2N45DDNE4Y28",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "2138002TXD6KSZ3V5X27",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2025-01-15T16:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-01-20",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2030-12-20",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 30000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": true,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": "PORT-E345",
+            "valid": true,
+            "error": null
+          },
+          "initial_margin_posted": {
+            "value": 900000,
+            "valid": true,
+            "error": null
+          },
+          "variation_margin_posted": {
+            "value": 0,
+            "valid": true,
+            "error": null
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "5299000J2N45DDNE4Y28",
-        "valid": true,
-        "error": null
-      },
-      "other_counterparty_lei": {
-        "value": "2138002TXD6KSZ3V5X27",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      }
-    },
-    "uti_validation": {
-      "value": "5299000J2N45DDNE4Y2820250115CDX0001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -394,39 +1435,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
-          "notional_currency: missing/null",
-          "notional_amount: missing/null"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "VGRQXHF3J8VDLUA7XE9220250601XCS0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "IEBOSOFLVMGO",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "VGRQXHF3J8VDLUA7XE92",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "4R3ZURLYISNNNMHMK608",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2025-06-01T09:30:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-06-05",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2028-06-05",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "notional_amount": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
-          "notional_currency: missing/null",
-          "notional_amount: missing/null"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "VGRQXHF3J8VDLUA7XE9220250601XCS0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "IEBOSOFLVMGO",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "VGRQXHF3J8VDLUA7XE92",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "4R3ZURLYISNNNMHMK608",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2025-06-01T09:30:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-06-05",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2028-06-05",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "notional_amount": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": "PORT-F678",
+            "valid": true,
+            "error": null
+          },
+          "initial_margin_posted": {
+            "value": 3200000,
+            "valid": true,
+            "error": null
+          },
+          "variation_margin_posted": {
+            "value": 150000,
+            "valid": true,
+            "error": null
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "VGRQXHF3J8VDLUA7XE92",
-        "valid": true,
-        "error": null
-      },
-      "other_counterparty_lei": {
-        "value": "4R3ZURLYISNNNMHMK608",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      }
-    },
-    "uti_validation": {
-      "value": "VGRQXHF3J8VDLUA7XE9220250601XCS0001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -435,35 +1578,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "9695009AXSRNHZE85Y2020250715TRS0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "7OC5JBAT6GAZ",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "9695009AXSRNHZE85Y20",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "5493001KJTIIGC8Y1R12",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2025-07-15T10:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-07-17",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2026-07-17",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 50000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "9695009AXSRNHZE85Y2020250715TRS0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "7OC5JBAT6GAZ",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "9695009AXSRNHZE85Y20",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "5493001KJTIIGC8Y1R12",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2025-07-15T10:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-07-17",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2026-07-17",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 50000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": "PORT-G901",
+            "valid": true,
+            "error": null
+          },
+          "initial_margin_posted": {
+            "value": 1750000,
+            "valid": true,
+            "error": null
+          },
+          "variation_margin_posted": {
+            "value": 0,
+            "valid": true,
+            "error": null
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "9695009AXSRNHZE85Y20",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      },
-      "other_counterparty_lei": {
-        "value": "5493001KJTIIGC8Y1R12",
-        "valid": true,
-        "error": null
-      }
-    },
-    "uti_validation": {
-      "value": "9695009AXSRNHZE85Y2020250715TRS0001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -472,35 +1721,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "execution_timestamp: not ISO 8601 UTC ('2025-09-01')"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "1VUV7VQFKUOQSJ21A20820250901INF0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "VPH2AI3M2FQF",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "1VUV7VQFKUOQSJ21A208",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "5299000J2N45DDNE4Y28",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2025-09-01",
+            "valid": false,
+            "error": "not ISO 8601 UTC ('2025-09-01'); expected YYYY-MM-DDTHH:MM:SSZ"
+          },
+          "effective_date": {
+            "value": "2025-09-03",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2035-09-03",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "GBP",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 25000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "execution_timestamp: not ISO 8601 UTC ('2025-09-01')"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "1VUV7VQFKUOQSJ21A20820250901INF0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "VPH2AI3M2FQF",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "1VUV7VQFKUOQSJ21A208",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "5299000J2N45DDNE4Y28",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2025-09-01",
+            "valid": false,
+            "error": "not ISO 8601 UTC ('2025-09-01'); expected YYYY-MM-DDTHH:MM:SSZ"
+          },
+          "effective_date": {
+            "value": "2025-09-03",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2035-09-03",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "GBP",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 25000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": "PORT-H234",
+            "valid": true,
+            "error": null
+          },
+          "initial_margin_posted": {
+            "value": 800000,
+            "valid": true,
+            "error": null
+          },
+          "variation_margin_posted": {
+            "value": 0,
+            "valid": true,
+            "error": null
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "1VUV7VQFKUOQSJ21A208",
-        "valid": true,
-        "error": null
-      },
-      "other_counterparty_lei": {
-        "value": "5299000J2N45DDNE4Y28",
-        "valid": true,
-        "error": null
-      }
-    },
-    "uti_validation": {
-      "value": "1VUV7VQFKUOQSJ21A20820250901INF0001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -509,40 +1864,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "4R3ZURLYISNNNMHMK60820251120FXS0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "GN5BBUBUO63K",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "4R3ZURLYISNNNMHMK608",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "2138002TXD6KSZ3V5X27",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2025-11-20T14:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-11-22",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2026-02-22",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "AUD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 40000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
-          "collateral_portfolio_code: missing/null",
-          "initial_margin_posted: missing/null",
-          "variation_margin_posted: missing/null"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "4R3ZURLYISNNNMHMK60820251120FXS0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "GN5BBUBUO63K",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "4R3ZURLYISNNNMHMK608",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "2138002TXD6KSZ3V5X27",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2025-11-20T14:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-11-22",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2026-02-22",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "AUD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 40000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "initial_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "variation_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "4R3ZURLYISNNNMHMK608",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      },
-      "other_counterparty_lei": {
-        "value": "2138002TXD6KSZ3V5X27",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      }
-    },
-    "uti_validation": {
-      "value": "4R3ZURLYISNNNMHMK60820251120FXS0001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -551,35 +2007,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "2138002TXD6KSZ3V5X2720250801CAP0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "5SJDIRDDDH6P",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "2138002TXD6KSZ3V5X27",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "1VUV7VQFKUOQSJ21A208",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2025-08-01T11:30:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-08-05",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2028-08-05",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 150000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "2138002TXD6KSZ3V5X2720250801CAP0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "5SJDIRDDDH6P",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "2138002TXD6KSZ3V5X27",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "1VUV7VQFKUOQSJ21A208",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2025-08-01T11:30:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-08-05",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2028-08-05",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 150000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": "PORT-I567",
+            "valid": true,
+            "error": null
+          },
+          "initial_margin_posted": {
+            "value": 2800000,
+            "valid": true,
+            "error": null
+          },
+          "variation_margin_posted": {
+            "value": 0,
+            "valid": true,
+            "error": null
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "2138002TXD6KSZ3V5X27",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      },
-      "other_counterparty_lei": {
-        "value": "1VUV7VQFKUOQSJ21A208",
-        "valid": true,
-        "error": null
-      }
-    },
-    "uti_validation": {
-      "value": "2138002TXD6KSZ3V5X2720250801CAP0001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -588,38 +2150,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "9695009AXSRNHZE85Y202025091VARSWP01",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "4AXPSUUPZQ5A",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "9695009AXSRNHZE85Y20",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "VGRQXHF3J8VDLUA7XE92",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2025-09-15T13:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-09-17",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2026-03-17",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "EUR",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 15000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
-          "collateral_portfolio_code: missing/null",
-          "initial_margin_posted: missing/null",
-          "variation_margin_posted: missing/null"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "9695009AXSRNHZE85Y202025091VARSWP01",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "4AXPSUUPZQ5A",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "9695009AXSRNHZE85Y20",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "VGRQXHF3J8VDLUA7XE92",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2025-09-15T13:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-09-17",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2026-03-17",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "EUR",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 15000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "initial_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "variation_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "9695009AXSRNHZE85Y20",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      },
-      "other_counterparty_lei": {
-        "value": "VGRQXHF3J8VDLUA7XE92",
-        "valid": true,
-        "error": null
-      }
-    },
-    "uti_validation": {
-      "value": "9695009AXSRNHZE85Y202025091VARSWP01",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -628,35 +2293,141 @@
     "regimes": {
       "CFTC": {
         "status": "COMPLIANT",
-        "field_errors": [],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "5493001KJTIIGC8Y1R1220251105SOV0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "OFM2EZHG4SWL",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "5493001KJTIIGC8Y1R12",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "5299000J2N45DDNE4Y28",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2025-11-05T09:15:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-11-07",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2030-11-07",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 20000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "collateral_portfolio_code: missing/null",
-          "initial_margin_posted: missing/null",
-          "variation_margin_posted: missing/null"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "5493001KJTIIGC8Y1R1220251105SOV0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "OFM2EZHG4SWL",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "5493001KJTIIGC8Y1R12",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "5299000J2N45DDNE4Y28",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2025-11-05T09:15:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-11-07",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2030-11-07",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 20000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "initial_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "variation_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "5493001KJTIIGC8Y1R12",
-        "valid": true,
-        "error": null
-      },
-      "other_counterparty_lei": {
-        "value": "5299000J2N45DDNE4Y28",
-        "valid": true,
-        "error": null
-      }
-    },
-    "uti_validation": {
-      "value": "5493001KJTIIGC8Y1R1220251105SOV0001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -665,35 +2436,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "VGRQXHF3J8VDLUA7XE9220251201OIS0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "WY2AIVEYHF5G",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "VGRQXHF3J8VDLUA7XE92",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "9695009AXSRNHZE85Y20",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2025-12-01T08:45:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-12-03",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2026-06-03",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "EUR",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 500000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": true,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "VGRQXHF3J8VDLUA7XE9220251201OIS0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "WY2AIVEYHF5G",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "VGRQXHF3J8VDLUA7XE92",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "9695009AXSRNHZE85Y20",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2025-12-01T08:45:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2025-12-03",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2026-06-03",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "EUR",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 500000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": true,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": "PORT-J890",
+            "valid": true,
+            "error": null
+          },
+          "initial_margin_posted": {
+            "value": 5500000,
+            "valid": true,
+            "error": null
+          },
+          "variation_margin_posted": {
+            "value": 0,
+            "valid": true,
+            "error": null
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "VGRQXHF3J8VDLUA7XE92",
-        "valid": true,
-        "error": null
-      },
-      "other_counterparty_lei": {
-        "value": "9695009AXSRNHZE85Y20",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      }
-    },
-    "uti_validation": {
-      "value": "VGRQXHF3J8VDLUA7XE9220251201OIS0001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -702,38 +2579,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "4R3ZURLYISNNNMHMK60820260115OPT0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "GOM5O4DWZOGO",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "4R3ZURLYISNNNMHMK608",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "1VUV7VQFKUOQSJ21A208",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2026-01-15T10:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2026-01-17",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2026-07-17",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 10000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
-          "collateral_portfolio_code: missing/null",
-          "initial_margin_posted: missing/null",
-          "variation_margin_posted: missing/null"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "4R3ZURLYISNNNMHMK60820260115OPT0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "GOM5O4DWZOGO",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "4R3ZURLYISNNNMHMK608",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "1VUV7VQFKUOQSJ21A208",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2026-01-15T10:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2026-01-17",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2026-07-17",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 10000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "initial_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "variation_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "4R3ZURLYISNNNMHMK608",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      },
-      "other_counterparty_lei": {
-        "value": "1VUV7VQFKUOQSJ21A208",
-        "valid": true,
-        "error": null
-      }
-    },
-    "uti_validation": {
-      "value": "4R3ZURLYISNNNMHMK60820260115OPT0001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -742,40 +2722,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "2138002TXD6KSZ3V5X2720260210BRR0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "XXMNZKW2FWYF",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "2138002TXD6KSZ3V5X27",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "4R3ZURLYISNNNMHMK608",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2026-02-10T15:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2026-02-12",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2026-08-12",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 30000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
-          "collateral_portfolio_code: missing/null",
-          "initial_margin_posted: missing/null",
-          "variation_margin_posted: missing/null"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "2138002TXD6KSZ3V5X2720260210BRR0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "XXMNZKW2FWYF",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "2138002TXD6KSZ3V5X27",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "4R3ZURLYISNNNMHMK608",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2026-02-10T15:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2026-02-12",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2026-08-12",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 30000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "initial_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "variation_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "2138002TXD6KSZ3V5X27",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      },
-      "other_counterparty_lei": {
-        "value": "4R3ZURLYISNNNMHMK608",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      }
-    },
-    "uti_validation": {
-      "value": "2138002TXD6KSZ3V5X2720260210BRR0001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -784,38 +2865,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "maturity_date: not a valid calendar date ('9999-99-99')"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "5493001KJTIIGC8Y1R12202603010001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "ABRCPFTDCQDM",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "5493001KJTIIGC8Y1R12",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "VGRQXHF3J8VDLUA7XE92",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2026-03-01T09:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2026-03-05",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "9999-99-99",
+            "valid": false,
+            "error": "not a valid calendar date ('9999-99-99')"
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 100000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": true,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "maturity_date: not a valid calendar date ('9999-99-99')",
-          "collateral_portfolio_code: missing/null",
-          "initial_margin_posted: missing/null",
-          "variation_margin_posted: missing/null"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "5493001KJTIIGC8Y1R12202603010001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "ABRCPFTDCQDM",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "5493001KJTIIGC8Y1R12",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "VGRQXHF3J8VDLUA7XE92",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2026-03-01T09:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2026-03-05",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "9999-99-99",
+            "valid": false,
+            "error": "not a valid calendar date ('9999-99-99')"
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 100000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": true,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "initial_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "variation_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "5493001KJTIIGC8Y1R12",
-        "valid": true,
-        "error": null
-      },
-      "other_counterparty_lei": {
-        "value": "VGRQXHF3J8VDLUA7XE92",
-        "valid": true,
-        "error": null
-      }
-    },
-    "uti_validation": {
-      "value": "5493001KJTIIGC8Y1R12202603010001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -824,35 +3008,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "9695009AXSRNHZE85Y2020260415ABS0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "Q624IWZCUONT",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "9695009AXSRNHZE85Y20",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "5493001KJTIIGC8Y1R12",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2026-04-15T11:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2026-04-17",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2031-04-17",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 15000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "reporting_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "9695009AXSRNHZE85Y2020260415ABS0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "Q624IWZCUONT",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "9695009AXSRNHZE85Y20",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": "5493001KJTIIGC8Y1R12",
+            "valid": true,
+            "error": null
+          },
+          "execution_timestamp": {
+            "value": "2026-04-15T11:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2026-04-17",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2031-04-17",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 15000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": "PORT-K123",
+            "valid": true,
+            "error": null
+          },
+          "initial_margin_posted": {
+            "value": 600000,
+            "valid": true,
+            "error": null
+          },
+          "variation_margin_posted": {
+            "value": 0,
+            "valid": true,
+            "error": null
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "9695009AXSRNHZE85Y20",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      },
-      "other_counterparty_lei": {
-        "value": "5493001KJTIIGC8Y1R12",
-        "valid": true,
-        "error": null
-      }
-    },
-    "uti_validation": {
-      "value": "9695009AXSRNHZE85Y2020260415ABS0001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -861,38 +3151,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "1VUV7VQFKUOQSJ21A20820260501EQF0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "7CNOSB34KQVI",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "1VUV7VQFKUOQSJ21A208",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "2138002TXD6KSZ3V5X27",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2026-05-01T10:30:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2026-05-05",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2026-11-05",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "SGD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 8000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
-          "collateral_portfolio_code: missing/null",
-          "initial_margin_posted: missing/null",
-          "variation_margin_posted: missing/null"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "1VUV7VQFKUOQSJ21A20820260501EQF0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "7CNOSB34KQVI",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "1VUV7VQFKUOQSJ21A208",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "2138002TXD6KSZ3V5X27",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2026-05-01T10:30:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2026-05-05",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2026-11-05",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "SGD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 8000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "initial_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "variation_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "1VUV7VQFKUOQSJ21A208",
-        "valid": true,
-        "error": null
-      },
-      "other_counterparty_lei": {
-        "value": "2138002TXD6KSZ3V5X27",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      }
-    },
-    "uti_validation": {
-      "value": "1VUV7VQFKUOQSJ21A20820260501EQF0001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -901,35 +3294,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "5299000J2N45DDNE4Y2820260601IRS9999",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "KAACWMWVCMYS",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "5299000J2N45DDNE4Y28",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "4R3ZURLYISNNNMHMK608",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2026-06-01T14:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2026-06-03",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2036-06-03",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "CAD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 60000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": true,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "5299000J2N45DDNE4Y2820260601IRS9999",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "KAACWMWVCMYS",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "5299000J2N45DDNE4Y28",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "4R3ZURLYISNNNMHMK608",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2026-06-01T14:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2026-06-03",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2036-06-03",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "CAD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 60000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": true,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": "PORT-L456",
+            "valid": true,
+            "error": null
+          },
+          "initial_margin_posted": {
+            "value": 1900000,
+            "valid": true,
+            "error": null
+          },
+          "variation_margin_posted": {
+            "value": 0,
+            "valid": true,
+            "error": null
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "5299000J2N45DDNE4Y28",
-        "valid": true,
-        "error": null
-      },
-      "other_counterparty_lei": {
-        "value": "4R3ZURLYISNNNMHMK608",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      }
-    },
-    "uti_validation": {
-      "value": "5299000J2N45DDNE4Y2820260601IRS9999",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -938,38 +3437,141 @@
     "regimes": {
       "CFTC": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "VGRQXHF3J8VDLUA7XE9220260701FXF0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "VP2UOPJQFX5D",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "VGRQXHF3J8VDLUA7XE92",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "9695009AXSRNHZE85Y20",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2026-07-01T16:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2026-07-03",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2026-10-03",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "EUR",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 45000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NONCOMPLIANT",
-        "field_errors": [
-          "other_counterparty_lei: invalid LEI (InvalidChecksum: The number's checksum or check digit is invalid.)",
-          "collateral_portfolio_code: missing/null",
-          "initial_margin_posted: missing/null",
-          "variation_margin_posted: missing/null"
-        ],
-        "applicability_note": null
+        "applicability_note": null,
+        "field_validations": {
+          "uti": {
+            "value": "VGRQXHF3J8VDLUA7XE9220260701FXF0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": "VP2UOPJQFX5D",
+            "valid": true,
+            "error": null
+          },
+          "reporting_counterparty_lei": {
+            "value": "VGRQXHF3J8VDLUA7XE92",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": "9695009AXSRNHZE85Y20",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "execution_timestamp": {
+            "value": "2026-07-01T16:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": "2026-07-03",
+            "valid": true,
+            "error": null
+          },
+          "maturity_date": {
+            "value": "2026-10-03",
+            "valid": true,
+            "error": null
+          },
+          "notional_currency": {
+            "value": "EUR",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 45000000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "initial_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "variation_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "VGRQXHF3J8VDLUA7XE92",
-        "valid": true,
-        "error": null
-      },
-      "other_counterparty_lei": {
-        "value": "9695009AXSRNHZE85Y20",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      }
-    },
-    "uti_validation": {
-      "value": "VGRQXHF3J8VDLUA7XE9220260701FXF0001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -978,31 +3580,141 @@
     "regimes": {
       "CFTC": {
         "status": "CONDITIONAL",
-        "field_errors": [],
-        "applicability_note": "Prediction contract on a CFTC-regulated DCM: in-scope but classification uncertain pending CFTC ANPR 91 FR 12516. Reporting status CONDITIONAL \u2014 would only become a clean COMPLIANT once formal classification is finalised."
+        "applicability_note": "Prediction contract on a CFTC-regulated DCM: in-scope but classification uncertain pending CFTC ANPR 91 FR 12516. Status CONDITIONAL \u2014 would only become COMPLIANT once formal classification is finalised. Field validations are still reported below for transparency.",
+        "field_validations": {
+          "uti": {
+            "value": "5493001KJTIIGC8Y1R1220260301EVT00001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null (Module 2 did not assign a UPI)"
+          },
+          "reporting_counterparty_lei": {
+            "value": "5493001KJTIIGC8Y1R12",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "execution_timestamp": {
+            "value": "2026-03-01T14:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "maturity_date": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 50000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": true,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NOT_APPLICABLE",
-        "field_errors": [],
-        "applicability_note": "Event/prediction contract: not classified as an OTC derivative under MAS trade reporting rules. Status NOT_APPLICABLE."
+        "applicability_note": "Event/prediction contract: not classified as an OTC derivative under MAS trade reporting rules. Status NOT_APPLICABLE. Field validations are still reported below for transparency.",
+        "field_validations": {
+          "uti": {
+            "value": "5493001KJTIIGC8Y1R1220260301EVT00001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null (Module 2 did not assign a UPI)"
+          },
+          "reporting_counterparty_lei": {
+            "value": "5493001KJTIIGC8Y1R12",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "execution_timestamp": {
+            "value": "2026-03-01T14:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "maturity_date": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 50000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": true,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "initial_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "variation_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "5493001KJTIIGC8Y1R12",
-        "valid": true,
-        "error": null
-      },
-      "other_counterparty_lei": {
-        "value": null,
-        "valid": false,
-        "error": "missing"
-      }
-    },
-    "uti_validation": {
-      "value": "5493001KJTIIGC8Y1R1220260301EVT00001",
-      "valid": true,
-      "error": null
     }
   },
   {
@@ -1011,31 +3723,141 @@
     "regimes": {
       "CFTC": {
         "status": "NOT_APPLICABLE",
-        "field_errors": [],
-        "applicability_note": "Prediction contract executed on an offshore unregulated venue (not a CFTC DCM): outside CFTC reporting scope. Status NOT_APPLICABLE."
+        "applicability_note": "Prediction contract executed on an offshore unregulated venue (not a CFTC DCM): outside CFTC reporting scope. Status NOT_APPLICABLE. Field validations are still reported below for transparency.",
+        "field_validations": {
+          "uti": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "upi": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null (Module 2 did not assign a UPI)"
+          },
+          "reporting_counterparty_lei": {
+            "value": "VGRQXHF3J8VDLUA7XE92",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "execution_timestamp": {
+            "value": "2026-02-15T11:30:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "maturity_date": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "notional_currency": {
+            "value": "USDC",
+            "valid": false,
+            "error": "not a 3-letter ISO 4217 code ('USDC')"
+          },
+          "notional_amount": {
+            "value": 200000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NOT_APPLICABLE",
-        "field_errors": [],
-        "applicability_note": "Event/prediction contract: not classified as an OTC derivative under MAS trade reporting rules. Status NOT_APPLICABLE."
+        "applicability_note": "Event/prediction contract: not classified as an OTC derivative under MAS trade reporting rules. Status NOT_APPLICABLE. Field validations are still reported below for transparency.",
+        "field_validations": {
+          "uti": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "upi": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null (Module 2 did not assign a UPI)"
+          },
+          "reporting_counterparty_lei": {
+            "value": "VGRQXHF3J8VDLUA7XE92",
+            "valid": true,
+            "error": null
+          },
+          "other_counterparty_lei": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "execution_timestamp": {
+            "value": "2026-02-15T11:30:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "maturity_date": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "notional_currency": {
+            "value": "USDC",
+            "valid": false,
+            "error": "not a 3-letter ISO 4217 code ('USDC')"
+          },
+          "notional_amount": {
+            "value": 200000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": false,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "initial_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "variation_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "VGRQXHF3J8VDLUA7XE92",
-        "valid": true,
-        "error": null
-      },
-      "other_counterparty_lei": {
-        "value": null,
-        "valid": false,
-        "error": "missing"
-      }
-    },
-    "uti_validation": {
-      "value": null,
-      "valid": false,
-      "error": "missing"
     }
   },
   {
@@ -1044,31 +3866,141 @@
     "regimes": {
       "CFTC": {
         "status": "CONDITIONAL",
-        "field_errors": [],
-        "applicability_note": "Prediction contract on a CFTC-regulated DCM: in-scope but classification uncertain pending CFTC ANPR 91 FR 12516. Reporting status CONDITIONAL \u2014 would only become a clean COMPLIANT once formal classification is finalised."
+        "applicability_note": "Prediction contract on a CFTC-regulated DCM: in-scope but classification uncertain pending CFTC ANPR 91 FR 12516. Status CONDITIONAL \u2014 would only become COMPLIANT once formal classification is finalised. Field validations are still reported below for transparency.",
+        "field_validations": {
+          "uti": {
+            "value": "9695009AXSRNHZE85Y2020260115REG0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null (Module 2 did not assign a UPI)"
+          },
+          "reporting_counterparty_lei": {
+            "value": "9695009AXSRNHZE85Y20",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "execution_timestamp": {
+            "value": "2026-01-15T10:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "maturity_date": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 100000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": true,
+            "valid": true,
+            "error": null
+          }
+        }
       },
       "MAS": {
         "status": "NOT_APPLICABLE",
-        "field_errors": [],
-        "applicability_note": "Event/prediction contract: not classified as an OTC derivative under MAS trade reporting rules. Status NOT_APPLICABLE."
+        "applicability_note": "Event/prediction contract: not classified as an OTC derivative under MAS trade reporting rules. Status NOT_APPLICABLE. Field validations are still reported below for transparency.",
+        "field_validations": {
+          "uti": {
+            "value": "9695009AXSRNHZE85Y2020260115REG0001",
+            "valid": true,
+            "error": null
+          },
+          "upi": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null (Module 2 did not assign a UPI)"
+          },
+          "reporting_counterparty_lei": {
+            "value": "9695009AXSRNHZE85Y20",
+            "valid": false,
+            "error": "InvalidChecksum: The number's checksum or check digit is invalid."
+          },
+          "other_counterparty_lei": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "execution_timestamp": {
+            "value": "2026-01-15T10:00:00Z",
+            "valid": true,
+            "error": null
+          },
+          "effective_date": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "maturity_date": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "notional_currency": {
+            "value": "USD",
+            "valid": true,
+            "error": null
+          },
+          "notional_amount": {
+            "value": 100000,
+            "valid": true,
+            "error": null
+          },
+          "action_type": {
+            "value": "NEW",
+            "valid": true,
+            "error": null
+          },
+          "cleared": {
+            "value": true,
+            "valid": true,
+            "error": null
+          },
+          "collateral_portfolio_code": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "initial_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          },
+          "variation_margin_posted": {
+            "value": null,
+            "valid": false,
+            "error": "missing/null"
+          }
+        }
       }
-    },
-    "lei_validations": {
-      "reporting_counterparty_lei": {
-        "value": "9695009AXSRNHZE85Y20",
-        "valid": false,
-        "error": "InvalidChecksum: The number's checksum or check digit is invalid."
-      },
-      "other_counterparty_lei": {
-        "value": null,
-        "valid": false,
-        "error": "missing"
-      }
-    },
-    "uti_validation": {
-      "value": "9695009AXSRNHZE85Y2020260115REG0001",
-      "valid": true,
-      "error": null
     }
   }
 ]
