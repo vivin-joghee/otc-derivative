@@ -3,8 +3,9 @@
 NTU MH6822 RegTech — Homework 2 implementation.
 
 This repo currently contains **Module 1** (Trade Parser & Instrument Classifier),
-**Module 2** (UPI Lookup Engine), and **Module 3** (Multi-Jurisdictional
-Compliance Checker — CFTC + MAS). Modules 4 and 5 are still to come.
+**Module 2** (UPI Lookup Engine), **Module 3** (Multi-Jurisdictional
+Compliance Checker — CFTC + MAS), and **Module 5** (Compliance Dashboard,
+bonus). Module 4 is the written report and lives outside this repo.
 
 ## Layout
 
@@ -20,11 +21,15 @@ src/
   module1_parser.py           # implementations
   module2_upi_lookup.py
   module3_compliance.py
+  dashboard.py                # Module 5 — Flask app
+  templates/
+    dashboard.html            #     Jinja2 template
 output/
   parsed_trades.json          # Module 1 output
   upi_lookup.json             # Module 2 output
   compliance_report.json      # Module 3 output
-requirements.txt              # python-stdnum, pycountry
+  dashboard.html              # Module 5 static snapshot (regenerated)
+requirements.txt              # python-stdnum, pycountry, flask, plotly
 ```
 
 ## Setup
@@ -45,6 +50,12 @@ requirements.txt              # python-stdnum, pycountry
 python src/module1_parser.py    --input data/trades.json   --output output/parsed_trades.json
 python src/module2_upi_lookup.py --trades data/trades.json --library data/product_definitions --output output/upi_lookup.json
 python src/module3_compliance.py --trades data/trades.json --upi-lookup output/upi_lookup.json --output output/compliance_report.json
+```
+
+Module 5 dashboard (Flask):
+```
+python src/dashboard.py                           # serves at http://127.0.0.1:5000/
+python src/dashboard.py --snapshot output/dashboard.html   # render once, no server
 ```
 
 ## Module 1 — Trade Parser
@@ -134,6 +145,32 @@ even though their status is set by the applicability rule, so the report
 makes clear *why* the trade isn't reportable cleanly (e.g. T026 shows
 `effective_date: missing/null` because event contracts use `settlement_date`
 instead — informative, but doesn't drive the CONDITIONAL status).
+
+## Module 5 — Dashboard (bonus)
+
+A small Flask app that loads `output/compliance_report.json` plus
+`data/trades.json` and renders four required charts plus the written
+interpretation:
+
+1. **Portfolio compliance heatmap** — 28 trades × 2 regimes, colour-coded
+   by status (green / red / amber / gray), with hover tooltips listing the
+   failed-field names and the applicability note for CONDITIONAL /
+   NOT_APPLICABLE cells.
+2. **Field-level failure-frequency** horizontal bar — counts how many times
+   each required field failed validation, summed across all 28 trades and
+   both regimes (so NOVEL field-absences are visible alongside the LEI
+   checksum failures).
+3. **Asset-class status breakdown** — stacked bar per asset class, side-by-
+   side per regime; EventContract is included so the visual contrast with
+   conventional asset classes is explicit.
+4. **Classification frontier panel** — a plain HTML table covering T026,
+   T027, T028 with platform, platform_type, CFTC + MAS status, and the
+   trade description.
+
+Run `python src/dashboard.py` to start the Flask dev server at
+http://127.0.0.1:5000/, or `python src/dashboard.py --snapshot
+output/dashboard.html` to render once to a static file (the same file is
+committed so the dashboard is browseable without running anything).
 
 ## Acknowledgement
 

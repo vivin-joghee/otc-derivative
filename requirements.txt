@@ -1,2 +1,4 @@
 python-stdnum>=1.20
 pycountry>=24.0
+flask>=3.0
+plotly>=5.20

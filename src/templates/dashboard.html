@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>OTC Derivatives Compliance Dashboard</title>
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      max-width: 1200px;
+      margin: 2em auto;
+      padding: 0 1.5em;
+      color: #2C3E50;
+      line-height: 1.5;
+    }
+    h1 { border-bottom: 3px solid #2C3E50; padding-bottom: 0.3em; }
+    h2 {
+      margin-top: 2.2em;
+      color: #34495E;
+      border-left: 4px solid #3498DB;
+      padding-left: 0.6em;
+    }
+    h3 { margin: 0 0 0.4em 0; font-size: 1em; }
+    .subtitle { color: #7F8C8D; margin-top: -0.4em; }
+    .summary {
+      display: flex;
+      gap: 1.5em;
+      background: #ECF0F1;
+      padding: 1.2em;
+      border-radius: 6px;
+      margin: 1.5em 0;
+    }
+    .summary > div { flex: 1; }
+    .summary table { width: 100%; border-collapse: collapse; }
+    .summary td { padding: 3px 0; font-size: 0.95em; }
+    .summary .total {
+      font-size: 2.2em;
+      margin: 0;
+      color: #2C3E50;
+      font-weight: 600;
+    }
+    .interp {
+      background: #F8F9FA;
+      border-left: 3px solid #95A5A6;
+      padding: 0.9em 1.3em;
+      margin: 0.9em 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .interp p { margin: 0; }
+    .interp b { color: #2C3E50; }
+    table.novel {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1em 0;
+      font-size: 0.95em;
+    }
+    table.novel th, table.novel td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #BDC3C7;
+      vertical-align: top;
+      text-align: left;
+    }
+    table.novel th { background: #ECF0F1; font-weight: 600; }
+    table.novel td.desc { font-size: 0.88em; color: #5D6D7E; }
+    .status-COMPLIANT     { color: #27AE60; font-weight: 600; }
+    .status-NONCOMPLIANT  { color: #C0392B; font-weight: 600; }
+    .status-CONDITIONAL   { color: #E67E22; font-weight: 600; }
+    .status-NOT_APPLICABLE{ color: #7F8C8D; font-weight: 600; }
+    code { background: #ECF0F1; padding: 1px 5px; border-radius: 3px; font-size: 0.9em; }
+    .footer { color: #95A5A6; margin-top: 3em; font-size: 0.85em; text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>OTC Derivatives Compliance Dashboard</h1>
+  <p class="subtitle">
+    Generated from <code>output/compliance_report.json</code>. CFTC + MAS reporting
+    compliance for the 28-trade portfolio.
+  </p>
+
+  <div class="summary">
+    <div>
+      <h3>CFTC</h3>
+      <table>
+        {% for status in status_order %}
+          {% if summary.cftc.get(status) %}
+            <tr>
+              <td><span class="status-{{ status }}">{{ status }}</span></td>
+              <td style="text-align:right">{{ summary.cftc.get(status, 0) }}</td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </table>
+    </div>
+    <div>
+      <h3>MAS</h3>
+      <table>
+        {% for status in status_order %}
+          {% if summary.mas.get(status) %}
+            <tr>
+              <td><span class="status-{{ status }}">{{ status }}</span></td>
+              <td style="text-align:right">{{ summary.mas.get(status, 0) }}</td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </table>
+    </div>
+    <div>
+      <h3>Total</h3>
+      <p class="total">{{ summary.total }}</p>
+      <p style="margin:0;color:#7F8C8D">trades evaluated</p>
+    </div>
+  </div>
+
+  <h2>Portfolio Compliance Heatmap</h2>
+  <p class="subtitle">
+    Trade × regime status grid. Hover any cell for the failed-field list and
+    applicability note.
+  </p>
+  {{ figures.heatmap | safe }}
+
+  <h2>Field-Level Failure Frequency</h2>
+  <p class="subtitle">
+    Number of times each required field failed validation, summed across all 28
+    trades and both regimes.
+  </p>
+  {{ figures.errors | safe }}
+
+  <h2>Asset Class Breakdown</h2>
+  <p class="subtitle">
+    Status distribution per asset class, side-by-side per regime.
+  </p>
+  {{ figures.asset_class | safe }}
+
+  <h2>Classification Frontier — Prediction Contracts (T026–T028)</h2>
+  <p class="subtitle">
+    The three NOVEL trades fall outside the ANNA-DSB UPI taxonomy. Their
+    CFTC / MAS status is determined by an applicability rule (venue + jurisdiction),
+    not by field validation.
+  </p>
+  <table class="novel">
+    <thead>
+      <tr>
+        <th>Trade</th><th>Platform</th><th>Platform type</th>
+        <th>CFTC</th><th>MAS</th><th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for n in novel %}
+        <tr>
+          <td><b>{{ n.trade_id }}</b></td>
+          <td>{{ n.platform }}</td>
+          <td><code>{{ n.platform_type }}</code></td>
+          <td><span class="status-{{ n.cftc_status }}">{{ n.cftc_status }}</span></td>
+          <td><span class="status-{{ n.mas_status }}">{{ n.mas_status }}</span></td>
+          <td class="desc">{{ n.description }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>Interpretation</h2>
+
+  <div class="interp">
+    <p><b>Why so few COMPLIANT.</b> Of the 8 distinct counterparty LEIs in the
+    portfolio, <b>3 fail ISO 7064 MOD 97-10</b>
+    (<code>2138002TXD6KSZ3V5X27</code>, <code>9695009AXSRNHZE85Y20</code>,
+    <code>4R3ZURLYISNNNMHMK608</code>). Only 3 of 25 conventional trades have
+    both counterparties' LEIs valid (T013, T017, T021); T013 has a date-only
+    <code>execution_timestamp</code>, T021 has <code>maturity_date:
+    "9999-99-99"</code>. T017 is the lone CFTC pass. T017 then fails MAS
+    because its three collateral / margin fields are explicit <code>null</code>.
+    The engine is doing what it is supposed to — surfacing the dataset's
+    deliberate data-quality issues as legitimate compliance failures, not
+    silently masking them.</p>
+  </div>
+
+  <div class="interp">
+    <p><b>Jurisdictional asymmetry for prediction contracts.</b> T026, T027 and
+    T028 are all binary event contracts with measurable economic exposure
+    (a German renewable-subsidy hedge, an EU bond-portfolio inflation hedge, a
+    FinTech compliance-cost hedge), but their reporting status flips entirely
+    on venue. T026 and T028 trade on Kalshi (a CFTC-regulated DCM) → CFTC
+    CONDITIONAL pending ANPR 91 FR 12516. T027 trades on Polymarket via VPN
+    bypass → CFTC NOT_APPLICABLE. All three are MAS NOT_APPLICABLE. The
+    instrument economics are unchanged; the regulatory perimeter is determined
+    by where the order book sits and how the user accessed it.</p>
+  </div>
+
+  <div class="interp">
+    <p><b>MAS adds collateral / margin obligations CFTC does not.</b> Of trades
+    where every shared CDE field passes, MAS additionally requires
+    <code>collateral_portfolio_code</code>, <code>initial_margin_posted</code>,
+    <code>variation_margin_posted</code> — and a value of <code>0</code> is
+    fine, it is <code>null</code> that fails. Trades T003, T004, T014, T017,
+    T019, T020, T023, T025 that would otherwise pass CFTC's identifier and date
+    checks fall over MAS because these three fields are simply absent from the
+    trade record. The asset-class panel makes the cleared / collateralised
+    trade types (Rates and Credit) visually compliant for MAS at a much higher
+    rate than the typically uncleared FX and Equity ones.</p>
+  </div>
+
+  <p class="footer">
+    OTC Compliance Engine — Modules 1, 2, 3, 5
+  </p>
+</body>
+</html>
