@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>OTC Derivatives Compliance Dashboard</title>
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      max-width: 1200px;
+      margin: 2em auto;
+      padding: 0 1.5em;
+      color: #2C3E50;
+      line-height: 1.5;
+    }
+    h1 { border-bottom: 3px solid #2C3E50; padding-bottom: 0.3em; }
+    h2 {
+      margin-top: 2.2em;
+      color: #34495E;
+      border-left: 4px solid #3498DB;
+      padding-left: 0.6em;
+    }
+    h3 { margin: 0 0 0.4em 0; font-size: 1em; }
+    .subtitle { color: #7F8C8D; margin-top: -0.4em; }
+    .summary {
+      display: flex;
+      gap: 1.5em;
+      background: #ECF0F1;
+      padding: 1.2em;
+      border-radius: 6px;
+      margin: 1.5em 0;
+    }
+    .summary > div { flex: 1; }
+    .summary table { width: 100%; border-collapse: collapse; }
+    .summary td { padding: 3px 0; font-size: 0.95em; }
+    .summary .total {
+      font-size: 2.2em;
+      margin: 0;
+      color: #2C3E50;
+      font-weight: 600;
+    }
+    .interp {
+      background: #F8F9FA;
+      border-left: 3px solid #95A5A6;
+      padding: 0.9em 1.3em;
+      margin: 0.9em 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .interp p { margin: 0; }
+    .interp b { color: #2C3E50; }
+    table.novel {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1em 0;
+      font-size: 0.95em;
+    }
+    table.novel th, table.novel td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #BDC3C7;
+      vertical-align: top;
+      text-align: left;
+    }
+    table.novel th { background: #ECF0F1; font-weight: 600; }
+    table.novel td.desc { font-size: 0.88em; color: #5D6D7E; }
+    .status-COMPLIANT     { color: #27AE60; font-weight: 600; }
+    .status-NONCOMPLIANT  { color: #C0392B; font-weight: 600; }
+    .status-CONDITIONAL   { color: #E67E22; font-weight: 600; }
+    .status-NOT_APPLICABLE{ color: #7F8C8D; font-weight: 600; }
+    code { background: #ECF0F1; padding: 1px 5px; border-radius: 3px; font-size: 0.9em; }
+    .footer { color: #95A5A6; margin-top: 3em; font-size: 0.85em; text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>OTC Derivatives Compliance Dashboard</h1>
+  <p class="subtitle">
+    Generated from <code>output/compliance_report.json</code>. CFTC + MAS reporting
+    compliance for the 28-trade portfolio.
+  </p>
+
+  <div class="summary">
+    <div>
+      <h3>CFTC</h3>
+      <table>
+        
+          
+            <tr>
+              <td><span class="status-COMPLIANT">COMPLIANT</span></td>
+              <td style="text-align:right">4</td>
+            </tr>
+          
+        
+          
+            <tr>
+              <td><span class="status-NONCOMPLIANT">NONCOMPLIANT</span></td>
+              <td style="text-align:right">26</td>
+            </tr>
+          
+        
+          
+            <tr>
+              <td><span class="status-CONDITIONAL">CONDITIONAL</span></td>
+              <td style="text-align:right">3</td>
+            </tr>
+          
+        
+          
+            <tr>
+              <td><span class="status-NOT_APPLICABLE">NOT_APPLICABLE</span></td>
+              <td style="text-align:right">1</td>
+            </tr>
+          
+        
+      </table>
+    </div>
+    <div>
+      <h3>MAS</h3>
+      <table>
+        
+          
+            <tr>
+              <td><span class="status-COMPLIANT">COMPLIANT</span></td>
+              <td style="text-align:right">3</td>
+            </tr>
+          
+        
+          
+            <tr>
+              <td><span class="status-NONCOMPLIANT">NONCOMPLIANT</span></td>
+              <td style="text-align:right">27</td>
+            </tr>
+          
+        
+          
+        
+          
+            <tr>
+              <td><span class="status-NOT_APPLICABLE">NOT_APPLICABLE</span></td>
+              <td style="text-align:right">4</td>
+            </tr>
+          
+        
+      </table>
+    </div>
+    <div>
+      <h3>Total</h3>
+      <p class="total">34</p>
+      <p style="margin:0;color:#7F8C8D">trades evaluated</p>
+    </div>
+  </div>
+
+  <h2>Portfolio Compliance Heatmap</h2>
+  <p class="subtitle">
+    Trade × regime status grid. Hover any cell for the failed-field list and
+    applicability note.
+  </p>
+  <div>                            <div id="chart-heatmap" class="plotly-graph-div" style="height:900px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("chart-heatmap")) {                    Plotly.newPlot(                        "chart-heatmap",                        [{"colorscale":[[0.0,"#2ECC71"],[0.249999,"#2ECC71"],[0.25,"#E74C3C"],[0.499999,"#E74C3C"],[0.5,"#F39C12"],[0.749999,"#F39C12"],[0.75,"#95A5A6"],[0.999999,"#95A5A6"]],"hovertemplate":"%{hovertext}\u003cextra\u003e\u003c\u002fextra\u003e","hovertext":[["\u003cb\u003eT001 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei","\u003cb\u003eT001 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei"],["\u003cb\u003eT002 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei","\u003cb\u003eT002 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei"],["\u003cb\u003eT003 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei","\u003cb\u003eT003 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei, collateral_portfolio_code, initial_margin_posted, variation_margin_posted"],["\u003cb\u003eT004 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei","\u003cb\u003eT004 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei, collateral_portfolio_code, initial_margin_posted, variation_margin_posted"],["\u003cb\u003eT005 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: reporting_counterparty_lei","\u003cb\u003eT005 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: reporting_counterparty_lei"],["\u003cb\u003eT006 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: uti, reporting_counterparty_lei","\u003cb\u003eT006 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: uti, reporting_counterparty_lei, collateral_portfolio_code, initial_margin_posted, variation_margin_posted"],["\u003cb\u003eT007 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: reporting_counterparty_lei","\u003cb\u003eT007 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: reporting_counterparty_lei, collateral_portfolio_code, initial_margin_posted, variation_margin_posted"],["\u003cb\u003eT008 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: reporting_counterparty_lei","\u003cb\u003eT008 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: reporting_counterparty_lei"],["\u003cb\u003eT009 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei, notional_currency","\u003cb\u003eT009 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei, notional_currency, collateral_portfolio_code, initial_margin_posted, variation_margin_posted"],["\u003cb\u003eT010 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei","\u003cb\u003eT010 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei"],["\u003cb\u003eT011 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei, notional_currency, notional_amount","\u003cb\u003eT011 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei, notional_currency, notional_amount"],["\u003cb\u003eT012 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: reporting_counterparty_lei","\u003cb\u003eT012 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: reporting_counterparty_lei"],["\u003cb\u003eT013 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: execution_timestamp","\u003cb\u003eT013 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: execution_timestamp"],["\u003cb\u003eT014 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: reporting_counterparty_lei, other_counterparty_lei","\u003cb\u003eT014 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: reporting_counterparty_lei, other_counterparty_lei, collateral_portfolio_code, initial_margin_posted, variation_margin_posted"],["\u003cb\u003eT015 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: reporting_counterparty_lei","\u003cb\u003eT015 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: reporting_counterparty_lei"],["\u003cb\u003eT016 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: reporting_counterparty_lei","\u003cb\u003eT016 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: reporting_counterparty_lei, collateral_portfolio_code, initial_margin_posted, variation_margin_posted"],["\u003cb\u003eT017 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eCOMPLIANT\u003c\u002fb\u003e","\u003cb\u003eT017 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: collateral_portfolio_code, initial_margin_posted, variation_margin_posted"],["\u003cb\u003eT018 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei","\u003cb\u003eT018 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei"],["\u003cb\u003eT019 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: reporting_counterparty_lei","\u003cb\u003eT019 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: reporting_counterparty_lei, collateral_portfolio_code, initial_margin_posted, variation_margin_posted"],["\u003cb\u003eT020 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: reporting_counterparty_lei, other_counterparty_lei","\u003cb\u003eT020 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: reporting_counterparty_lei, other_counterparty_lei, collateral_portfolio_code, initial_margin_posted, variation_margin_posted"],["\u003cb\u003eT021 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: maturity_date","\u003cb\u003eT021 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: maturity_date, collateral_portfolio_code, initial_margin_posted, variation_margin_posted"],["\u003cb\u003eT022 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: reporting_counterparty_lei","\u003cb\u003eT022 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: reporting_counterparty_lei"],["\u003cb\u003eT023 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei","\u003cb\u003eT023 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei, collateral_portfolio_code, initial_margin_posted, variation_margin_posted"],["\u003cb\u003eT024 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei","\u003cb\u003eT024 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei"],["\u003cb\u003eT025 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei","\u003cb\u003eT025 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: other_counterparty_lei, collateral_portfolio_code, initial_margin_posted, variation_margin_posted"],["\u003cb\u003eT026 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eCONDITIONAL\u003c\u002fb\u003e\u003cbr\u003eFailed fields: upi, other_counterparty_lei, effective_date, maturity_date\u003cbr\u003e\u003ci\u003ePrediction contract on a CFTC-regulated DCM: in-scope but classification uncertain pending CFTC ANPR 91 FR 12516. Status CONDITIONAL \u2014 would...\u003c\u002fi\u003e","\u003cb\u003eT026 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNOT_APPLICABLE\u003c\u002fb\u003e\u003cbr\u003eFailed fields: upi, other_counterparty_lei, effective_date, maturity_date, collateral_portfolio_code, initial_margin_posted, variation_margin_posted\u003cbr\u003e\u003ci\u003eEvent\u002fprediction contract: not classified as an OTC derivative under MAS trade reporting rules. Status NOT_APPLICABLE. Field validations are...\u003c\u002fi\u003e"],["\u003cb\u003eT027 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNOT_APPLICABLE\u003c\u002fb\u003e\u003cbr\u003eFailed fields: uti, upi, other_counterparty_lei, effective_date, maturity_date, notional_currency\u003cbr\u003e\u003ci\u003ePrediction contract executed on an offshore unregulated venue (not a CFTC DCM): outside CFTC reporting scope. Status NOT_APPLICABLE. Field v...\u003c\u002fi\u003e","\u003cb\u003eT027 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNOT_APPLICABLE\u003c\u002fb\u003e\u003cbr\u003eFailed fields: uti, upi, other_counterparty_lei, effective_date, maturity_date, notional_currency, collateral_portfolio_code, initial_margin_posted, variation_margin_posted\u003cbr\u003e\u003ci\u003eEvent\u002fprediction contract: not classified as an OTC derivative under MAS trade reporting rules. Status NOT_APPLICABLE. Field validations are...\u003c\u002fi\u003e"],["\u003cb\u003eT028 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eCONDITIONAL\u003c\u002fb\u003e\u003cbr\u003eFailed fields: upi, reporting_counterparty_lei, other_counterparty_lei, effective_date, maturity_date\u003cbr\u003e\u003ci\u003ePrediction contract on a CFTC-regulated DCM: in-scope but classification uncertain pending CFTC ANPR 91 FR 12516. Status CONDITIONAL \u2014 would...\u003c\u002fi\u003e","\u003cb\u003eT028 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNOT_APPLICABLE\u003c\u002fb\u003e\u003cbr\u003eFailed fields: upi, reporting_counterparty_lei, other_counterparty_lei, effective_date, maturity_date, collateral_portfolio_code, initial_margin_posted, variation_margin_posted\u003cbr\u003e\u003ci\u003eEvent\u002fprediction contract: not classified as an OTC derivative under MAS trade reporting rules. Status NOT_APPLICABLE. Field validations are...\u003c\u002fi\u003e"],["\u003cb\u003eT029 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eCOMPLIANT\u003c\u002fb\u003e","\u003cb\u003eT029 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eCOMPLIANT\u003c\u002fb\u003e"],["\u003cb\u003eT030 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eCOMPLIANT\u003c\u002fb\u003e","\u003cb\u003eT030 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eCOMPLIANT\u003c\u002fb\u003e"],["\u003cb\u003eT031 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: uti","\u003cb\u003eT031 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: uti"],["\u003cb\u003eT032 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: action_type","\u003cb\u003eT032 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNONCOMPLIANT\u003c\u002fb\u003e\u003cbr\u003eFailed fields: action_type"],["\u003cb\u003eT033 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eCOMPLIANT\u003c\u002fb\u003e","\u003cb\u003eT033 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eCOMPLIANT\u003c\u002fb\u003e"],["\u003cb\u003eT034 \u002f CFTC\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eCONDITIONAL\u003c\u002fb\u003e\u003cbr\u003eFailed fields: upi, other_counterparty_lei, effective_date, maturity_date\u003cbr\u003e\u003ci\u003ePrediction contract on a CFTC-regulated DCM: in-scope but classification uncertain pending CFTC ANPR 91 FR 12516. Status CONDITIONAL \u2014 would...\u003c\u002fi\u003e","\u003cb\u003eT034 \u002f MAS\u003c\u002fb\u003e\u003cbr\u003eStatus: \u003cb\u003eNOT_APPLICABLE\u003c\u002fb\u003e\u003cbr\u003eFailed fields: upi, other_counterparty_lei, effective_date, maturity_date, collateral_portfolio_code, initial_margin_posted, variation_margin_posted\u003cbr\u003e\u003ci\u003eEvent\u002fprediction contract: not classified as an OTC derivative under MAS trade reporting rules. Status NOT_APPLICABLE. Field validations are...\u003c\u002fi\u003e"]],"showscale":false,"text":[["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["COMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["CONDITIONAL","NOT_APPLICABLE"],["NOT_APPLICABLE","NOT_APPLICABLE"],["CONDITIONAL","NOT_APPLICABLE"],["COMPLIANT","COMPLIANT"],["COMPLIANT","COMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["NONCOMPLIANT","NONCOMPLIANT"],["COMPLIANT","COMPLIANT"],["CONDITIONAL","NOT_APPLICABLE"]],"textfont":{"size":10},"texttemplate":"%{text}","x":["CFTC","MAS"],"xgap":2,"y":["T001","T002","T003","T004","T005","T006","T007","T008","T009","T010","T011","T012","T013","T014","T015","T016","T017","T018","T019","T020","T021","T022","T023","T024","T025","T026","T027","T028","T029","T030","T031","T032","T033","T034"],"ygap":2,"z":[[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[0,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[2,3],[3,3],[2,3],[0,0],[0,0],[1,1],[1,1],[0,0],[2,3]],"zmax":3,"zmin":0,"type":"heatmap"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"yaxis":{"title":{"text":"Trade ID"},"autorange":"reversed"},"margin":{"l":80,"r":40,"t":60,"b":60},"title":{"text":"Portfolio Compliance Heatmap"},"xaxis":{"title":{"text":"Regime"}},"height":900,"plot_bgcolor":"white"},                        {"responsive": true}                    )                };            </script>        </div>
+
+  <h2>Field-Level Failure Frequency</h2>
+  <p class="subtitle">
+    Number of times each required field failed validation, summed across all 28
+    trades and both regimes.
+  </p>
+  <div>                            <div id="chart-errors" class="plotly-graph-div" style="height:520px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("chart-errors")) {                    Plotly.newPlot(                        "chart-errors",                        [{"hovertemplate":"%{y}: %{x} failures\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#E74C3C"},"orientation":"h","text":["2","2","2","6","6","8","8","10","17","17","17","24","34"],"textposition":"outside","x":[2,2,2,6,6,8,8,10,17,17,17,24,34],"y":["notional_amount","execution_timestamp","action_type","uti","notional_currency","upi","effective_date","maturity_date","collateral_portfolio_code","initial_margin_posted","variation_margin_posted","reporting_counterparty_lei","other_counterparty_lei"],"type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"margin":{"l":200,"r":60,"t":60,"b":60},"title":{"text":"Field-Level Failure Frequency (28 trades x 2 regimes)"},"xaxis":{"title":{"text":"Number of failures"}},"yaxis":{"title":{"text":""}},"height":520,"plot_bgcolor":"white"},                        {"responsive": true}                    )                };            </script>        </div>
+
+  <h2>Asset Class Breakdown</h2>
+  <p class="subtitle">
+    Status distribution per asset class, side-by-side per regime.
+  </p>
+  <div>                            <div id="chart-asset_class" class="plotly-graph-div" style="height:460px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("chart-asset_class")) {                    Plotly.newPlot(                        "chart-asset_class",                        [{"hovertemplate":"%{x} (CFTC)\u003cbr\u003eCOMPLIANT: %{y} trade(s)\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"COMPLIANT","marker":{"color":"#2ECC71"},"name":"COMPLIANT","showlegend":true,"x":["Commodities","Credit","Equity","EventContract","FX","Rates"],"y":[1,2,0,0,0,1],"type":"bar","xaxis":"x","yaxis":"y"},{"hovertemplate":"%{x} (CFTC)\u003cbr\u003eNONCOMPLIANT: %{y} trade(s)\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"NONCOMPLIANT","marker":{"color":"#E74C3C"},"name":"NONCOMPLIANT","showlegend":true,"x":["Commodities","Credit","Equity","EventContract","FX","Rates"],"y":[2,3,5,0,6,10],"type":"bar","xaxis":"x","yaxis":"y"},{"hovertemplate":"%{x} (CFTC)\u003cbr\u003eCONDITIONAL: %{y} trade(s)\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"CONDITIONAL","marker":{"color":"#F39C12"},"name":"CONDITIONAL","showlegend":true,"x":["Commodities","Credit","Equity","EventContract","FX","Rates"],"y":[0,0,0,3,0,0],"type":"bar","xaxis":"x","yaxis":"y"},{"hovertemplate":"%{x} (CFTC)\u003cbr\u003eNOT_APPLICABLE: %{y} trade(s)\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"NOT_APPLICABLE","marker":{"color":"#95A5A6"},"name":"NOT_APPLICABLE","showlegend":true,"x":["Commodities","Credit","Equity","EventContract","FX","Rates"],"y":[0,0,0,1,0,0],"type":"bar","xaxis":"x","yaxis":"y"},{"hovertemplate":"%{x} (MAS)\u003cbr\u003eCOMPLIANT: %{y} trade(s)\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"COMPLIANT","marker":{"color":"#2ECC71"},"name":"COMPLIANT","showlegend":false,"x":["Commodities","Credit","Equity","EventContract","FX","Rates"],"y":[1,1,0,0,0,1],"type":"bar","xaxis":"x2","yaxis":"y2"},{"hovertemplate":"%{x} (MAS)\u003cbr\u003eNONCOMPLIANT: %{y} trade(s)\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"NONCOMPLIANT","marker":{"color":"#E74C3C"},"name":"NONCOMPLIANT","showlegend":false,"x":["Commodities","Credit","Equity","EventContract","FX","Rates"],"y":[2,4,5,0,6,10],"type":"bar","xaxis":"x2","yaxis":"y2"},{"hovertemplate":"%{x} (MAS)\u003cbr\u003eNOT_APPLICABLE: %{y} trade(s)\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"NOT_APPLICABLE","marker":{"color":"#95A5A6"},"name":"NOT_APPLICABLE","showlegend":false,"x":["Commodities","Credit","Equity","EventContract","FX","Rates"],"y":[0,0,0,4,0,0],"type":"bar","xaxis":"x2","yaxis":"y2"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,0.46]},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Trade count"}},"xaxis2":{"anchor":"y2","domain":[0.54,1.0]},"yaxis2":{"anchor":"x2","domain":[0.0,1.0],"matches":"y","showticklabels":false},"annotations":[{"font":{"size":16},"showarrow":false,"text":"CFTC","x":0.23,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"MAS","x":0.77,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"}],"legend":{"orientation":"h","yanchor":"bottom","y":-0.25,"xanchor":"center","x":0.5},"margin":{"l":60,"r":40,"t":80,"b":80},"barmode":"stack","title":{"text":"Asset Class Status Breakdown"},"height":460,"plot_bgcolor":"white"},                        {"responsive": true}                    )                };            </script>        </div>
+
+  <h2>Classification Frontier — Prediction Contracts (T026–T028)</h2>
+  <p class="subtitle">
+    The three NOVEL trades fall outside the ANNA-DSB UPI taxonomy. Their
+    CFTC / MAS status is determined by an applicability rule (venue + jurisdiction),
+    not by field validation.
+  </p>
+  <table class="novel">
+    <thead>
+      <tr>
+        <th>Trade</th><th>Platform</th><th>Platform type</th>
+        <th>CFTC</th><th>MAS</th><th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr>
+          <td><b>T026</b></td>
+          <td>Kalshi</td>
+          <td><code>CFTC_REGULATED_DCM</code></td>
+          <td><span class="status-CONDITIONAL">CONDITIONAL</span></td>
+          <td><span class="status-NOT_APPLICABLE">NOT_APPLICABLE</span></td>
+          <td class="desc">Binary event contract on German federal election outcome. Pays USD 1.00 per contract if AfD achieves over 30 percent vote share in the 2025 Bundestagswahl.</td>
+        </tr>
+      
+        <tr>
+          <td><b>T027</b></td>
+          <td>Polymarket</td>
+          <td><code>DECENTRALISED_BLOCKCHAIN_PLATFORM</code></td>
+          <td><span class="status-NOT_APPLICABLE">NOT_APPLICABLE</span></td>
+          <td><span class="status-NOT_APPLICABLE">NOT_APPLICABLE</span></td>
+          <td class="desc">Binary event contract paying USD 1.00 if US CPI inflation (all items, 12 month) exceeds 3.0 percent in Q3 2026 as reported by BLS.</td>
+        </tr>
+      
+        <tr>
+          <td><b>T028</b></td>
+          <td>Kalshi</td>
+          <td><code>CFTC_REGULATED_DCM</code></td>
+          <td><span class="status-CONDITIONAL">CONDITIONAL</span></td>
+          <td><span class="status-NOT_APPLICABLE">NOT_APPLICABLE</span></td>
+          <td class="desc">Binary event contract paying USD 1.00 if ESMA formally approves the EU AI Act Annex III high risk classification for credit scoring models before 31 December 2026.</td>
+        </tr>
+      
+        <tr>
+          <td><b>T034</b></td>
+          <td>Kalshi</td>
+          <td><code>CFTC_REGULATED_DCM</code></td>
+          <td><span class="status-CONDITIONAL">CONDITIONAL</span></td>
+          <td><span class="status-NOT_APPLICABLE">NOT_APPLICABLE</span></td>
+          <td class="desc">Binary event contract paying USD 1.00 per contract if the US Supreme Court issues a judgment before 30 June 2027 materially limiting FTC rulemaking authority over algorithmic decision-making, on post-Loper-Bright administrative-law doctrine.</td>
+        </tr>
+      
+    </tbody>
+  </table>
+
+  <h2>Interpretation</h2>
+
+  <div class="interp">
+    <p><b>Why so few COMPLIANT.</b> Of the 8 distinct counterparty LEIs in the
+    portfolio, <b>3 fail ISO 7064 MOD 97-10</b>
+    (<code>2138002TXD6KSZ3V5X27</code>, <code>9695009AXSRNHZE85Y20</code>,
+    <code>4R3ZURLYISNNNMHMK608</code>). Only 3 of 25 conventional trades have
+    both counterparties' LEIs valid (T013, T017, T021); T013 has a date-only
+    <code>execution_timestamp</code>, T021 has <code>maturity_date:
+    "9999-99-99"</code>. T017 is the lone CFTC pass. T017 then fails MAS
+    because its three collateral / margin fields are explicit <code>null</code>.
+    The engine is doing what it is supposed to — surfacing the dataset's
+    deliberate data-quality issues as legitimate compliance failures, not
+    silently masking them.</p>
+  </div>
+
+  <div class="interp">
+    <p><b>Jurisdictional asymmetry for prediction contracts.</b> T026, T027 and
+    T028 are all binary event contracts with measurable economic exposure
+    (a German renewable-subsidy hedge, an EU bond-portfolio inflation hedge, a
+    FinTech compliance-cost hedge), but their reporting status flips entirely
+    on venue. T026 and T028 trade on Kalshi (a CFTC-regulated DCM) → CFTC
+    CONDITIONAL pending ANPR 91 FR 12516. T027 trades on Polymarket via VPN
+    bypass → CFTC NOT_APPLICABLE. All three are MAS NOT_APPLICABLE. The
+    instrument economics are unchanged; the regulatory perimeter is determined
+    by where the order book sits and how the user accessed it.</p>
+  </div>
+
+  <div class="interp">
+    <p><b>MAS adds collateral / margin obligations CFTC does not.</b> Of trades
+    where every shared CDE field passes, MAS additionally requires
+    <code>collateral_portfolio_code</code>, <code>initial_margin_posted</code>,
+    <code>variation_margin_posted</code> — and a value of <code>0</code> is
+    fine, it is <code>null</code> that fails. Trades T003, T004, T014, T017,
+    T019, T020, T023, T025 that would otherwise pass CFTC's identifier and date
+    checks fall over MAS because these three fields are simply absent from the
+    trade record. The asset-class panel makes the cleared / collateralised
+    trade types (Rates and Credit) visually compliant for MAS at a much higher
+    rate than the typically uncleared FX and Equity ones.</p>
+  </div>
+
+  <p class="footer">
+    OTC Compliance Engine — Modules 1, 2, 3, 5
+  </p>
+</body>
+</html>

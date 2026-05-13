@@ -1,0 +1,318 @@
+[
+  {
+    "trade_id": "T001",
+    "status": "FOUND",
+    "matched_template": "Rates.Swap.Fixed_Float",
+    "upi_code": "F5MHTX6XHEUV",
+    "classification_note": null,
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T002",
+    "status": "FOUND",
+    "matched_template": "Credit.Swap.Corporate",
+    "upi_code": "FKIH3MDQSZMM",
+    "classification_note": null,
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T003",
+    "status": "FOUND",
+    "matched_template": "Foreign_Exchange.Forward.NDF",
+    "upi_code": "7DC7Z7NNFHJS",
+    "classification_note": null,
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T004",
+    "status": "FOUND",
+    "matched_template": "Equity.Option.Single_Name",
+    "upi_code": "SAHR7EC3NB27",
+    "classification_note": "Heuristic template match: (Equity, Option, SingleName_Put) did not match any template stem exactly; closest by token overlap is 'Equity.Option.Single_Name'. Manual review recommended.",
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T005",
+    "status": "FOUND",
+    "matched_template": "Rates.Swap.Fixed_Float",
+    "upi_code": "6JOX3VY6BWB6",
+    "classification_note": null,
+    "validation_errors": [],
+    "warnings": [
+      "reference_rate: 'GBP-LIBOR-BBA' is a LIBOR rate \u2014 deprecated since June 2023 cessation"
+    ]
+  },
+  {
+    "trade_id": "T006",
+    "status": "FOUND",
+    "matched_template": "Rates.Swap.Basis",
+    "upi_code": "C2JK4QMQJPAP",
+    "classification_note": null,
+    "validation_errors": [
+      "reference_rate_leg2: unknown reference rate 'EUR-ESTR' (not in FpmlRatesReferenceRate or FpmlRatesInflationRate codesets)"
+    ],
+    "warnings": []
+  },
+  {
+    "trade_id": "T007",
+    "status": "FOUND",
+    "matched_template": "Commodities.Swap.Single_Index",
+    "upi_code": "2BGEQSCRKPM5",
+    "classification_note": "Heuristic template match: (Commodities, Swap, SingleName) did not match any template stem exactly; closest by token overlap is 'Commodities.Swap.Single_Index'. Manual review recommended.",
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T008",
+    "status": "FOUND",
+    "matched_template": "Rates.Option.Swaption",
+    "upi_code": "6EIZIVTDWLBW",
+    "classification_note": null,
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T009",
+    "status": "FOUND",
+    "matched_template": "Foreign_Exchange.Option.Vanilla_Option",
+    "upi_code": "U4EVYHSS4UPN",
+    "classification_note": "Heuristic template match: (FX, Option, Vanilla) did not match any template stem exactly; closest by token overlap is 'Foreign_Exchange.Option.Vanilla_Option'. Manual review recommended.",
+    "validation_errors": [
+      "notional_currency: unknown ISO 4217 code 'INVALID_CCY'"
+    ],
+    "warnings": []
+  },
+  {
+    "trade_id": "T010",
+    "status": "FOUND",
+    "matched_template": "Credit.Swap.Index",
+    "upi_code": "7Q7W5TEOCPRW",
+    "classification_note": null,
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T011",
+    "status": "FOUND",
+    "matched_template": "Rates.Swap.Cross_Currency_Basis",
+    "upi_code": "IEBOSOFLVMGO",
+    "classification_note": "Heuristic template match: (Rates, Swap, CrossCurrency) did not match any template stem exactly; closest by token overlap is 'Rates.Swap.Cross_Currency_Basis'. Manual review recommended.",
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T012",
+    "status": "FOUND",
+    "matched_template": "Equity.Swap.Total_Return_Swap_Single_Index",
+    "upi_code": "7OC5JBAT6GAZ",
+    "classification_note": "Heuristic template match: (Equity, Swap, TotalReturn_SingleIndex) did not match any template stem exactly; closest by token overlap is 'Equity.Swap.Total_Return_Swap_Single_Index'. Manual review recommended.",
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T013",
+    "status": "FOUND",
+    "matched_template": "Rates.Swap.Inflation_Swap",
+    "upi_code": "VPH2AI3M2FQF",
+    "classification_note": "Heuristic template match: (Rates, Swap, Inflation) did not match any template stem exactly; closest by token overlap is 'Rates.Swap.Inflation_Swap'. Manual review recommended.",
+    "validation_errors": [
+      "reference_rate: unknown reference rate 'GBP-RPI' (not in FpmlRatesReferenceRate or FpmlRatesInflationRate codesets)"
+    ],
+    "warnings": []
+  },
+  {
+    "trade_id": "T014",
+    "status": "FOUND",
+    "matched_template": "Foreign_Exchange.Swap.FX_Swap",
+    "upi_code": "GN5BBUBUO63K",
+    "classification_note": "Heuristic template match: (FX, Swap, Standard) did not match any template stem exactly; closest by token overlap is 'Foreign_Exchange.Swap.FX_Swap'. Manual review recommended.",
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T015",
+    "status": "FOUND",
+    "matched_template": "Rates.Option.CapFloor",
+    "upi_code": "5SJDIRDDDH6P",
+    "classification_note": "Heuristic template match: (Rates, Cap_Floor, Cap) did not match any template stem exactly; closest by token overlap is 'Rates.Option.CapFloor'. Manual review recommended.",
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T016",
+    "status": "FOUND",
+    "matched_template": "Equity.Swap.Parameter_Return_Variance_Single_Name",
+    "upi_code": "4AXPSUUPZQ5A",
+    "classification_note": "Heuristic template match: (Equity, Swap, Variance) did not match any template stem exactly; closest by token overlap is 'Equity.Swap.Parameter_Return_Variance_Single_Name'. Manual review recommended.",
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T017",
+    "status": "FOUND",
+    "matched_template": "Credit.Swap.Sovereign",
+    "upi_code": "OFM2EZHG4SWL",
+    "classification_note": null,
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T018",
+    "status": "FOUND",
+    "matched_template": "Rates.Swap.Basis_OIS",
+    "upi_code": "WY2AIVEYHF5G",
+    "classification_note": "Heuristic template match: (Rates, Swap, OIS) did not match any template stem exactly; closest by token overlap is 'Rates.Swap.Basis_OIS'. Manual review recommended.",
+    "validation_errors": [
+      "reference_rate: unknown reference rate 'EUR-ESTR' (not in FpmlRatesReferenceRate or FpmlRatesInflationRate codesets)"
+    ],
+    "warnings": []
+  },
+  {
+    "trade_id": "T019",
+    "status": "FOUND",
+    "matched_template": "Commodities.Option.Single_Index",
+    "upi_code": "GOM5O4DWZOGO",
+    "classification_note": "Heuristic template match: (Commodities, Option, SingleName) did not match any template stem exactly; closest by token overlap is 'Commodities.Option.Single_Index'. Manual review recommended.",
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T020",
+    "status": "FOUND",
+    "matched_template": "Foreign_Exchange.Option.Barrier_Option",
+    "upi_code": "XXMNZKW2FWYF",
+    "classification_note": "Heuristic template match: (FX, Option, Barrier) did not match any template stem exactly; closest by token overlap is 'Foreign_Exchange.Option.Barrier_Option'. Manual review recommended.",
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T021",
+    "status": "FOUND",
+    "matched_template": "Rates.Swap.Fixed_Float",
+    "upi_code": "ABRCPFTDCQDM",
+    "classification_note": null,
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T022",
+    "status": "FOUND",
+    "matched_template": "Credit.Swap.ABS",
+    "upi_code": "Q624IWZCUONT",
+    "classification_note": null,
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T023",
+    "status": "FOUND",
+    "matched_template": "Equity.Forward.Price_Return_Basic_Performance_Single_Name",
+    "upi_code": "7CNOSB34KQVI",
+    "classification_note": "Heuristic template match: (Equity, Forward, SingleName) did not match any template stem exactly; closest by token overlap is 'Equity.Forward.Price_Return_Basic_Performance_Single_Name'. Manual review recommended.",
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T024",
+    "status": "FOUND",
+    "matched_template": "Rates.Swap.Fixed_Float",
+    "upi_code": "KAACWMWVCMYS",
+    "classification_note": null,
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T025",
+    "status": "FOUND",
+    "matched_template": "Foreign_Exchange.Forward.Forward",
+    "upi_code": "VP2UOPJQFX5D",
+    "classification_note": "Heuristic template match: (FX, Forward, Deliverable) did not match any template stem exactly; closest by token overlap is 'Foreign_Exchange.Forward.Forward'. Manual review recommended.",
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T026",
+    "status": "NO_PRODUCT_DEFINITION",
+    "matched_template": null,
+    "upi_code": null,
+    "classification_note": "Instrument type 'BinaryEventContract' under asset class 'EventContract' has no product definition in the ANNA-DSB UPI library. This reflects the current regulatory classification of prediction and event contracts as outside the OTC derivatives taxonomy in most jurisdictions. Refer to Module 4 for classification analysis.",
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T027",
+    "status": "NO_PRODUCT_DEFINITION",
+    "matched_template": null,
+    "upi_code": null,
+    "classification_note": "Instrument type 'BinaryEventContract' under asset class 'EventContract' has no product definition in the ANNA-DSB UPI library. This reflects the current regulatory classification of prediction and event contracts as outside the OTC derivatives taxonomy in most jurisdictions. Refer to Module 4 for classification analysis.",
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T028",
+    "status": "NO_PRODUCT_DEFINITION",
+    "matched_template": null,
+    "upi_code": null,
+    "classification_note": "Instrument type 'BinaryEventContract' under asset class 'EventContract' has no product definition in the ANNA-DSB UPI library. This reflects the current regulatory classification of prediction and event contracts as outside the OTC derivatives taxonomy in most jurisdictions. Refer to Module 4 for classification analysis.",
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T029",
+    "status": "FOUND",
+    "matched_template": "Rates.Swap.Fixed_Float",
+    "upi_code": "F5MHTX6XHEUV",
+    "classification_note": null,
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T030",
+    "status": "FOUND",
+    "matched_template": "Credit.Swap.Corporate",
+    "upi_code": "FKIH3MDQSZMM",
+    "classification_note": null,
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T031",
+    "status": "FOUND",
+    "matched_template": "Foreign_Exchange.Forward.NDF",
+    "upi_code": "TLXPGJJ2OLWQ",
+    "classification_note": null,
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T032",
+    "status": "FOUND",
+    "matched_template": "Equity.Option.Single_Name",
+    "upi_code": "C4PLHHP2C5VF",
+    "classification_note": "Heuristic template match: (Equity, Option, SingleName_Call) did not match any template stem exactly; closest by token overlap is 'Equity.Option.Single_Name'. Manual review recommended.",
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T033",
+    "status": "FOUND",
+    "matched_template": "Commodities.Swap.Single_Index",
+    "upi_code": "SLLJLH6O7QVA",
+    "classification_note": "Heuristic template match: (Commodities, Swap, SingleName) did not match any template stem exactly; closest by token overlap is 'Commodities.Swap.Single_Index'. Manual review recommended.",
+    "validation_errors": [],
+    "warnings": []
+  },
+  {
+    "trade_id": "T034",
+    "status": "NO_PRODUCT_DEFINITION",
+    "matched_template": null,
+    "upi_code": null,
+    "classification_note": "Instrument type 'BinaryEventContract' under asset class 'EventContract' has no product definition in the ANNA-DSB UPI library. This reflects the current regulatory classification of prediction and event contracts as outside the OTC derivatives taxonomy in most jurisdictions. Refer to Module 4 for classification analysis.",
+    "validation_errors": [],
+    "warnings": []
+  }
+]

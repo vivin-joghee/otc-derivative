@@ -2,17 +2,20 @@
 
 NTU MH6822 RegTech — Homework 2 implementation.
 
-This repo currently contains **Module 1** (Trade Parser & Instrument Classifier),
+This repo contains **Module 1** (Trade Parser & Instrument Classifier),
 **Module 2** (UPI Lookup Engine), **Module 3** (Multi-Jurisdictional
-Compliance Checker — CFTC + MAS), and **Module 5** (Compliance Dashboard,
-bonus). Module 4 is the written report and lives outside this repo.
+Compliance Checker — CFTC + MAS), **Module 4** (written analysis on
+prediction contracts), and **Module 5** (Compliance Dashboard, bonus).
 
 ## Layout
 
 ```
 data/
-  trades.json                 # 28 sample trades provided by the assignment
-  product_definitions/        # ANNA-DSB repo (gitignored — clone separately)
+  trades.json                 # 28 assignment-provided trades (untouched)
+  trades_additional.json      # 6 author-designed trades (T029-T034) — Deliverable 2
+  trades_all.json             # pre-merged 28 + 6 = 34 trades for the full pipeline
+  product_definitions/        # ANNA-DSB Product Definitions, vendored copy
+  ssrn-6571938.pdf            # Brandes (2026) policy brief, required reading for Module 4
 stubs/
   module1_parser.py           # original assignment-website stubs
   module2_upi_lookup.py
@@ -22,13 +25,19 @@ src/
   module2_upi_lookup.py
   module3_compliance.py
   dashboard.py                # Module 5 — Flask app
+  module4_analysis.md         # Module 4 — written analysis (no code)
+  module4_review.md           #   peer-review notes folded back into the analysis
   templates/
     dashboard.html            #     Jinja2 template
 output/
-  parsed_trades.json          # Module 1 output
-  upi_lookup.json             # Module 2 output
-  compliance_report.json      # Module 3 output
-  dashboard.html              # Module 5 static snapshot (regenerated)
+  parsed_trades.json          # Module 1 output  (28-trade portfolio)
+  upi_lookup.json             # Module 2 output  (28-trade portfolio)
+  compliance_report.json      # Module 3 output  (28-trade portfolio)
+  dashboard.html              # Module 5 snapshot (28-trade portfolio)
+  parsed_trades_all.json      # Module 1 output  (full 34-trade portfolio)
+  upi_lookup_all.json         # Module 2 output  (full 34-trade portfolio)
+  compliance_report_all.json  # Module 3 output  (full 34-trade portfolio) — Deliverable 2
+  dashboard_all.html          # Module 5 snapshot (full 34-trade portfolio)
 requirements.txt              # python-stdnum, pycountry, flask, plotly
 ```
 
@@ -39,10 +48,10 @@ requirements.txt              # python-stdnum, pycountry, flask, plotly
    ```
    pip install -r requirements.txt
    ```
-3. Clone the ANNA-DSB product definitions library into `data/product_definitions/`:
-   ```
-   git clone https://github.com/ANNA-DSB/Product-Definitions.git data/product_definitions
-   ```
+
+The ANNA-DSB Product Definitions library is vendored at `data/product_definitions/`
+(38 MB), so a fresh `git clone` is everything you need. The upstream is
+https://github.com/ANNA-DSB/Product-Definitions if you want to refresh.
 
 ## Run
 
@@ -57,6 +66,37 @@ Module 5 dashboard (Flask):
 python src/dashboard.py                           # serves at http://127.0.0.1:5000/
 python src/dashboard.py --snapshot output/dashboard.html   # render once, no server
 ```
+
+To regenerate the **full 34-trade pipeline** (Deliverable 2 — 28 provided trades + 6
+author-designed trades):
+```
+python src/module1_parser.py    --input data/trades_all.json --output output/parsed_trades_all.json
+python src/module2_upi_lookup.py --trades data/trades_all.json --library data/product_definitions --output output/upi_lookup_all.json
+python src/module3_compliance.py --trades data/trades_all.json --upi-lookup output/upi_lookup_all.json --output output/compliance_report_all.json
+python src/dashboard.py          --trades data/trades_all.json --report output/compliance_report_all.json --snapshot output/dashboard_all.html
+```
+
+## Deliverable 2 — Additional trades (T029–T034)
+
+`data/trades_additional.json` contains six author-designed trades that
+extend the assignment-provided portfolio. Each trade carries an inline
+`_note` field describing intent (the modules ignore unknown fields).
+
+| ID | Asset class | Use case | Intent | CFTC / MAS |
+|---|---|---|---|---|
+| T029 | Rates | Swap.Fixed_Float | Clean compliant — proves the engine can produce COMPLIANT when data is right | COMPLIANT / COMPLIANT |
+| T030 | Credit | Swap.Corporate | Clean compliant — cleared on ICE Credit | COMPLIANT / COMPLIANT |
+| **T031** | FX | Forward.NDF | **Intentional error 1** — UTI namespace begins with `9695…` while reporter is `5493…` (ISO 23897 mismatch) | NONCOMPLIANT (`uti` only) |
+| **T032** | Equity | Option.SingleName_Call | **Intentional error 2** — `action_type: "PENDING"` (not in approved enum) | NONCOMPLIANT (`action_type` only) |
+| T033 | Commodities | Swap on Brent crude | Clean compliant — single-commodity swap cleared on ICE | COMPLIANT / COMPLIANT |
+| T034 | EventContract | BinaryEventContract.**JudicialOutcome** | New event-contract variant beyond T026–T028; SCOTUS / FTC doctrine binary on Kalshi DCM | CONDITIONAL / NOT_APPLICABLE |
+
+The two error trades each isolate a **single** validation rule that is
+*not* exercised by any of the 28 provided trades — every other category of
+failure (LEI checksum, currency, timestamp, maturity_date, missing UTI,
+stale rate codeset) is already represented in the original portfolio.
+With T031 and T032 added, every validation rule the engine implements
+has at least one positive catch in `compliance_report_all.json`.
 
 ## Module 1 — Trade Parser
 

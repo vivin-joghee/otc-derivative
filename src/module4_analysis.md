@@ -8,14 +8,13 @@ This section answers the four sub-tasks of Module 4 against the three event-cont
 
 Brandes (2026) argues that a prediction contract must be evaluated by its economic function — hedging, price discovery, risk transfer — *before* being assigned to a regulatory category. Applying his three-question test to the three event-contract trades:
 
-**T026 — `CorporateTreasury` (LEI `5493001KJTIIGC8Y1R12`) on AfD vote share ≥ 30 % in the 2025 Bundestagswahl, Kalshi.**
-(1) *Identifiable actor with measurable exposure?* Yes. The trade record names *"German renewable energy subsidy regime materially affected by election outcome"* — directly mirroring Brandes's (2026) Sachsen-Anhalt wind-energy archetype, where state-level renewable policy is a quantifiable financial risk. (2) *Hedging utility?* Yes. A binary on AfD vote share offsets subsidy-rollback risk that no listed European derivative covers; the firm "can vote… cannot hedge" (Brandes 2026). (3) *Price discovery beyond polls?* Yes. Market-implied probability updates intraday, whereas Infratest dimap / Forsa publish with multi-day lag (Brandes 2026).
+**T026 — `CorporateTreasury` on AfD vote share ≥ 30 % in the 2025 Bundestagswahl, Kalshi.** The trade names *"German renewable energy subsidy regime materially affected by election outcome"* — Brandes's (2026) Sachsen-Anhalt wind-energy archetype. The binary offsets subsidy-rollback risk no listed European derivative covers; market-implied probability updates intraday, while Infratest dimap / Forsa publish with multi-day lag (Brandes 2026).
 
-**T027 — `AssetManager_EU` (LEI `VGRQXHF3J8VDLUA7XE92`) on US CPI ≥ 3 % Q3 2026, Polymarket via `VPN_BYPASS_GGL_BLOCK`.** (1) Yes — a USD-denominated bond portfolio carries measurable duration / inflation exposure. (2) Yes, though the trade record itself flags the position as `HEDGING_SPECULATIVE_MIXED`, consistent with Brandes's (2026) observation that thin offshore markets blur the two motives. (3) Yes — continuously priced CPI probability has no opinion-poll substitute.
+**T027 — `AssetManager_EU` on US CPI ≥ 3 % Q3 2026, Polymarket via `VPN_BYPASS_GGL_BLOCK`.** USD-denominated bond duration is a measurable inflation exposure; the trade flags `HEDGING_SPECULATIVE_MIXED`, consistent with Brandes's (2026) observation that thin offshore markets blur the two motives. Continuously priced CPI probability has no opinion-poll substitute.
 
-**T028 — `FinTechFirm_EU` (LEI `9695009AXSRNHZE85Y20`) on ESMA approval of AI Act Annex III high-risk classification for credit scoring, Kalshi.** (1) Yes; the firm's "credit scoring product compliance costs are contingent on this classification decision" — exposure is contractual. (2) Yes; this is the cleanest hedging case in the portfolio because the resolving decision has direct, named-firm impact. (3) Yes — regulatory-decision probability has no polling equivalent.
+**T028 — `FinTechFirm_EU` on ESMA approval of AI Act Annex III high-risk classification for credit scoring, Kalshi.** Compliance costs are contractually contingent on the decision — the cleanest hedging case, with no polling substitute for regulatory-decision probability.
 
-**Conclusion.** All three trades perform a hedging or price-discovery function analogous to recognised derivatives. Their MAS / EMIR classification as gambling is what Brandes (2026) calls a "surface-level resemblance" decision — taken before the economic function was evaluated, and now suppressing the function rather than regulating it.
+**Conclusion.** All three trades perform a hedging or price-discovery function analogous to recognised derivatives. Their EU treatment as gambling (Glücksspielstaatsvertrag 2021 in Germany; equivalent national frameworks elsewhere) is what Brandes (2026) calls a "surface-level resemblance" decision — taken before the economic function was evaluated. MAS's `NOT_APPLICABLE` status is a different rationale — the contracts simply fall outside the Singapore OTC derivatives taxonomy — but the upstream cause is the same classification gap, not a deliberate policy determination that political risk should remain unhedgeable.
 
 ---
 
@@ -38,44 +37,23 @@ Brandes (2026) argues that a prediction contract must be evaluated by its econom
 
 ```json
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "EventContract.BinaryEventContract.PoliticalOutcome.UPI.V1",
-  "type": "object",
-  "properties": {
-    "Header": {
-      "type": "object",
-      "properties": {
-        "AssetClass":     { "type": "string", "enum": ["EventContract"] },
-        "InstrumentType": { "type": "string", "enum": ["BinaryEventContract"] },
-        "UseCase":        { "type": "string", "enum": [
-            "PoliticalOutcome", "MacroeconomicOutcome",
-            "RegulatoryDecisionOutcome", "JudicialOutcome"
-        ]},
-        "Level":          { "type": "string", "enum": ["UPI"] }
-      },
-      "required": ["AssetClass", "InstrumentType", "UseCase", "Level"]
-    },
-    "Attributes": {
-      "type": "object",
-      "properties": {
-        "EventDescription":    { "type": "string", "minLength": 20, "maxLength": 500 },
-        "EventType":           { "type": "string", "enum": [
-            "ELECTION_OUTCOME", "MACROECONOMIC_THRESHOLD",
-            "REGULATORY_DECISION", "JUDICIAL_DECISION"
-        ]},
-        "JurisdictionOfEvent": { "$ref": "../../codesets/ISO3166CountryCode.json" },
-        "SettlementCurrency":  { "$ref": "../../codesets/ISOCurrencyCode.json" },
-        "ContractSize":        { "type": "number", "minimum": 0 },
-        "SettlementDate":      { "type": "string", "format": "date" },
-        "ReferenceSource":     { "$ref": "../../codesets/EventOracleRegistry.json" },
-        "DeliveryType":        { "type": "string", "enum": ["CASH"] }
-      },
-      "required": [
-        "EventDescription", "EventType", "JurisdictionOfEvent",
-        "SettlementCurrency", "ContractSize", "SettlementDate",
-        "ReferenceSource", "DeliveryType"
-      ]
-    }
+  "AssetClass": "EventContract",
+  "InstrumentType": "BinaryEventContract",
+  "UseCase": "PoliticalOutcome",
+  "Level": "UPI",
+  "UPI": "<mock-12-char-code>",
+  "Attributes": {
+    "EventDescription":    { "type": "string", "minLength": 20, "maxLength": 500 },
+    "EventType":           { "type": "string", "enum": [
+        "ELECTION_OUTCOME", "MACROECONOMIC_THRESHOLD",
+        "REGULATORY_DECISION", "JUDICIAL_DECISION"
+    ]},
+    "JurisdictionOfEvent": { "type": "string", "codeset": "ISO3166CountryCode" },
+    "SettlementCurrency":  { "type": "string", "codeset": "ISOCurrencyCode" },
+    "ContractSize":        { "type": "number", "minimum": 0 },
+    "SettlementDate":      { "type": "string", "format": "date" },
+    "ReferenceSource":     { "type": "string", "codeset": "EventOracleRegistry" },
+    "DeliveryType":        { "type": "string", "enum": ["CASH"] }
   }
 }
 ```
@@ -84,15 +62,15 @@ Brandes (2026) argues that a prediction contract must be evaluated by its econom
 
 ## 4C. Jurisdictional Arbitrage and Regulatory Design
 
-**(1) Beneficiaries and the harmed.** T026's `CorporateTreasury` benefits from US regulatory clarity — Kalshi is a CFTC-regulated DCM (CFTC 2026), so subsidy-rollback risk is lawfully hedged. T027's `AssetManager_EU` is harmed twice: accessing Polymarket via `VPN_BYPASS_GGL_BLOCK` forfeits consumer protection — Brandes (2026) cites Polymarket's $10.5 M Venezuela non-resolution as the relevant precedent — and EU systemic-risk regulators get no SDR visibility into the resulting exposure. The losers are EU regulators (ESMA, the GGL), EU tax authorities, and the EU firms forced offshore. Brandes's (2026) framing holds: *"the prohibition's primary effect is not the elimination of prediction market participation but the elimination of regulatory oversight over that participation."*
+**(1) Beneficiaries and the harmed.** T026's `CorporateTreasury` benefits from US regulatory clarity — Kalshi is a CFTC-regulated DCM (CFTC 2026). T028's `FinTechFirm_EU` uses the same Kalshi venue to hedge an exposure whose economic function sits inside the EU regulatory perimeter; ESMA, the resolving authority, has no visibility into hedging that anticipates its own decision. T027's `AssetManager_EU` is harmed twice over: accessing Polymarket via `VPN_BYPASS_GGL_BLOCK` forfeits consumer protection (Brandes 2026 cites Polymarket's $10.5 M Venezuela non-resolution), and EU systemic-risk regulators get no SDR visibility. Structural losers: EU supervisors, tax authorities, and EU firms forced offshore — *"the prohibition's primary effect is … the elimination of regulatory oversight over that participation"* (Brandes 2026).
 
 **(2) Two of Brandes's five framework elements, operationalised for RegTech.**
 
-*Contract Scope Limitations.* Brandes (2026) proposes "permitting contracts where identifiable actors bear event-contingent financial exposure, and restricting contracts where no such exposure exists." Concretely: collect trade-level `event_type`, `jurisdiction_of_event`, and an `economic_function_test_score` per Cassar's (2026) "prediction test"; validation rejects contracts whose `event_type` is not in the venue's licensed scope (entertainment, celebrity behaviour). Reporting infrastructure: a jurisdiction-stamped event-classification feed at the SDR, queryable by ESMA and national competent authorities.
+*Contract Scope Limitations* (Brandes 2026): permit contracts where identifiable actors bear event-contingent exposure; restrict where none exists. Data: trade-level `event_type`, `jurisdiction_of_event`, and an `economic_function_test_score` per Cassar's (2026) "prediction test." Validation: reject contracts whose event type falls outside the venue's licensed scope. Reporting: jurisdiction-stamped event-classification feed at the SDR.
 
-*Market Integrity Supervision.* Brandes (2026) calls for "surveillance obligations equivalent to those imposed on regulated trading venues under MAR." Operationally: collect full L2 order books and trade tape per contract, plus oracle-attestation hashes at resolution. Validation: MAR-equivalent abnormal-volume and pricing alerts, indexed especially to the days immediately preceding resolution (where the manipulation incentive is highest). Reporting: sub-second surveillance feed to ESMA, mirroring the MiFIR transaction-reporting and MAR (Regulation (EU) 596/2014) obligations already imposed on MiFID II venues.
+*Market Integrity Supervision* (Brandes 2026, calling for "surveillance obligations equivalent to those imposed on regulated trading venues under MAR"). Data: L2 order books, trade tape, oracle-attestation hashes. Validation: MAR-equivalent abnormal-volume and pricing alerts, indexed to days approaching resolution. Reporting: sub-second surveillance feed to ESMA, mirroring MiFIR and MAR (Regulation (EU) 596/2014).
 
-**(3) Changes to the reporting stack under an EMIR-aligned framework.** *ANNA-DSB library:* new `EventContract` asset class plus codesets for `EventType`, `JurisdictionOfEvent`, `EventOracleRegistry`. *UTI generation rules:* the ISO 23897 shape is preserved but the namespace LEI must be that of the DCM or resolving oracle — event contracts frequently have only one named legal party (T026 and T028 have `other_counterparty_lei: null`), breaking the bilateral-LEI assumption in current guidance. *SDR infrastructure:* lifecycle action types `RESOLVED_YES` / `RESOLVED_NO` and a new `oracle_attestation_hash` field that anchors each resolution to a verifiable cryptographic statement, removing the DCM's unilateral authority.
+**(3) Changes to the reporting stack under an EMIR-aligned framework.** *ANNA-DSB library:* new `EventContract` asset class plus codesets for `EventType`, `JurisdictionOfEvent`, `EventOracleRegistry`. *UTI generation rules:* the ISO 23897 shape is preserved; for venue-traded event contracts the DCM remains the UTI generator, consistent with current exchange-traded practice on Kalshi. The single-party problem (T026 and T028 have `other_counterparty_lei: null`) is resolved by treating the DCM as the reporting party of record rather than re-engineering the namespace — current guidance simply needs an explicit carve-out for single-named-party venue trades. *SDR infrastructure:* dedicated event-contract fields — `event_resolution_source`, `event_outcome_realisation`, `oracle_attestation_hash` — plus lifecycle action types `RESOLVED_YES` / `RESOLVED_NO` that replace the bilateral termination flow. The oracle hash anchors each resolution to a verifiable cryptographic statement, removing the DCM's unilateral authority over outcome determination without entangling the UTI namespace.
 
 ---
 
