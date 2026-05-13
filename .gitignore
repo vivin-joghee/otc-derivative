@@ -1,6 +1,3 @@
-# ANNA-DSB Product Definitions repo (~150 MB) — clone separately, see README
-data/product_definitions/
-
 # Python
 __pycache__/
 *.py[cod]
