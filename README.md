@@ -86,28 +86,6 @@ python src/dashboard.py                           # serves at http://127.0.0.1:5
 python src/dashboard.py --snapshot output/dashboard.html   # render once, no server
 ```
 
-Deliverable 3 is committed in three formats — the Markdown source at
-`src/technical_regulatory_report.md`, an interactive PDF, and a Word
-document. To regenerate either binary:
-```
-python scripts/build_report_pdf.py   # output/technical_regulatory_report.pdf
-python scripts/build_report_docx.py  # output/technical_regulatory_report.docx
-```
-The PDF carries a clickable Table of Contents, a bookmarks / outline panel
-populated from the section headings, and clickable external URLs in the
-References block. The Word document uses Heading 1 / 2 styles so Word's
-navigation pane works, and includes a Table of Contents field at the top
-(right-click → Update Field to refresh in Word).
-
-To render the Module 5 dashboard to PDF (committed at
-`output/dashboard.pdf` and `output/dashboard_all.pdf`):
-```
-python scripts/build_dashboard_pdf.py
-```
-This drives Microsoft Edge in headless mode so the Plotly JS charts
-finish rendering before the page is printed. Falls back to Chrome if
-Edge isn't installed.
-
 To regenerate the **full 34-trade pipeline** (Deliverable 2 — 28 provided trades + 6
 author-designed trades):
 ```
