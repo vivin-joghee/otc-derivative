@@ -212,6 +212,16 @@ http://127.0.0.1:5000/, or `python src/dashboard.py --snapshot
 output/dashboard.html` to render once to a static file (the same file is
 committed so the dashboard is browseable without running anything).
 
+## Team and Contributions
+
+| Name | Matric No. | Email | Primary role | Contribution |
+|---|---|---|---|---|
+| Jagan Augustine | G2505229D | jagan002@e.ntu.edu.sg | Domain Expert | Interprets regulatory requirements, validates trade economics, leads the Module 4 policy analysis, and writes §1 of the technical and regulatory report (Regulatory Landscape). |
+| Vivin Joghee | G2505378K | vivin001@e.ntu.edu.sg | Engineer | Designs the five-module architecture, builds each module's CLI entry point and the Flask dashboard, owns the repository structure, integration, and the ANNA-DSB vendoring. |
+| Pua Sin Yee (Clara) | G2508087C | sinyee001@e.ntu.edu.sg | Validation Specialist | Implements codeset validation against `ISOCurrencyCode` / `FpmlRatesReferenceRate` / `FpmlRatesInflationRate`, the ISO 7064 MOD 97-10 LEI check-digit algorithm, the ISO 23897 UTI format checks, and the per-field `{value, valid, error}` compliance-report generator. |
+
+The Researcher role — deepening the MAS jurisdictional analysis, designing the six author-added trades (T029–T034) for Deliverable 2, and shaping the Flask dashboard's four required visualisations — was shared across all three team members.
+
 ## Acknowledgement
 
 This implementation was developed with AI assistance for ANNA-DSB schema
