@@ -29,6 +29,10 @@ src/
   dashboard.py                # Module 5 — Flask app
   module4_analysis.md         # Module 4 — written analysis (no code)
   module4_review.md           #   peer-review notes folded back into the analysis
+  technical_regulatory_report.md  # Deliverable 3 — the report (Markdown source)
+  presentation_notes.md       # Deliverable 4 — recorded-presentation speaker notes
+scripts/
+  build_report_pdf.py         # Renders the Deliverable 3 report to an interactive PDF
   templates/
     dashboard.html            #     Jinja2 template
 output/
@@ -40,7 +44,8 @@ output/
   upi_lookup_all.json         # Module 2 output  (full 34-trade portfolio)
   compliance_report_all.json  # Module 3 output  (full 34-trade portfolio) — Deliverable 2
   dashboard_all.html          # Module 5 snapshot (full 34-trade portfolio)
-requirements.txt              # python-stdnum, pycountry, flask, plotly
+  technical_regulatory_report.pdf  # Deliverable 3 — interactive PDF with clickable TOC + bookmarks
+requirements.txt              # python-stdnum, pycountry, flask, plotly (+ markdown, xhtml2pdf for PDF)
 ```
 
 ## Setup
@@ -68,6 +73,15 @@ Module 5 dashboard (Flask):
 python src/dashboard.py                           # serves at http://127.0.0.1:5000/
 python src/dashboard.py --snapshot output/dashboard.html   # render once, no server
 ```
+
+To rebuild the interactive PDF of the technical and regulatory report
+(`output/technical_regulatory_report.pdf` is committed; this regenerates it):
+```
+python scripts/build_report_pdf.py
+```
+The PDF carries a clickable table of contents, a bookmarks / outline panel
+populated from the section headings, and clickable external URLs in the
+References block.
 
 To regenerate the **full 34-trade pipeline** (Deliverable 2 — 28 provided trades + 6
 author-designed trades):

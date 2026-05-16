@@ -2,3 +2,8 @@ python-stdnum>=1.20
 pycountry>=24.0
 flask>=3.0
 plotly>=5.20
+
+# Optional — only required to rebuild the interactive PDF via
+# scripts/build_report_pdf.py
+markdown>=3.5
+xhtml2pdf>=0.2
