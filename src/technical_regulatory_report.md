@@ -78,6 +78,18 @@ The engine demonstrates a complete validation surface against a static portfolio
 
 ---
 
+## Team Contribution Statement
+
+**Jagan Augustine (G2505229D) — Domain Expert.** Jagan led the regulatory and policy work. He interpreted the field-requirement tables for CFTC Part 45 and the MAS Securities and Futures (Reporting of Derivatives Contracts) Regulations, validated the trade economics for the three provided event contracts (T026 / T027 / T028) and the author-designed T034 JudicialOutcome variant, and authored Module 4 (`src/module4_analysis.md`) in full — including the Brandes (2026) three-question economic-function test for the three prediction-contract trades, the §4B UPI schema proposal for the political-outcome variant, the operationalisation of the Contract Scope Limitations and Market Integrity Supervision framework elements, and the engine-limits reflection. He also drafted §1 (Regulatory Landscape) of this report, mapping the three identifier pillars (UPI / UTI / LEI) to the divergence between regimes.
+
+**Vivin Joghee (G2505378K) — Engineer.** Vivin owned the architecture and engineering. He designed the five-module JSON-in / JSON-out pipeline, built each module's CLI entry point and the Flask + plotly dashboard, and chose the matching strategy in Module 2 — exact-then-heuristic with token-overlap scoring rather than a curated alias table, which solved the trade-vs-template use-case naming divergence without per-trade maintenance. He implemented the deterministic base32 mock UPI (hashing only UPI-defining attributes so two trades on the same product collide deterministically), maintained the repository structure and `.gitignore` decisions, vendored the 38 MB ANNA-DSB Product Definitions library to satisfy Deliverable 1's "copy of" requirement, and authored §2 (System Architecture) of this report.
+
+**Pua Sin Yee / Clara (G2508087C) — Validation Specialist.** Clara owned the validation surface. She implemented the ISO 4217 currency check via `pycountry` (including the XAU precious-metal carve-out), the ISO 7064 MOD 97-10 LEI checksum (using `python-stdnum.lei.validate` plus a hand-implemented `compute_lei_check_digits` helper retained for educational transparency), and the ISO 23897 UTI namespace / suffix validator. She designed the Module 3 per-field `{value, valid, error}` audit-trail schema that makes every check explicit in the output rather than only surfacing failures, and identified the three dataset LEIs (`2138002TXD6KSZ3V5X27`, `9695009AXSRNHZE85Y20`, `4R3ZURLYISNNNMHMK608`) that fail MOD 97-10 — the assignment's "test LEIs are not all real" teaching point. She authored §3 (Portfolio Findings) of this report.
+
+The Researcher role — deeper analysis of the MAS jurisdictional choice, design of the six author-added trades (T029–T034) for Deliverable 2 with the two intentional errors (T031 UTI namespace mismatch, T032 unrecognised `action_type`), and shaping the dashboard's four required visualisations — was shared across all three members.
+
+---
+
 ## References
 
 Bank for International Settlements [BIS]. (2025). *Statistical release: OTC derivatives statistics at end-June 2025*. Monetary and Economic Department.
