@@ -34,6 +34,7 @@ src/
 scripts/
   build_report_pdf.py         # Renders the Deliverable 3 report to an interactive PDF
   build_report_docx.py        # Renders the Deliverable 3 report to a Word .docx (via pandoc)
+  build_dashboard_pdf.py      # Renders the Module 5 dashboard to PDF (via headless Edge)
   templates/
     dashboard.html            #     Jinja2 template
 output/
@@ -47,6 +48,8 @@ output/
   dashboard_all.html          # Module 5 snapshot (full 34-trade portfolio)
   technical_regulatory_report.pdf  # Deliverable 3 — interactive PDF with clickable TOC + bookmarks
   technical_regulatory_report.docx # Deliverable 3 — Word version with TOC + heading styles
+  dashboard.pdf                # Module 5 dashboard rendered to PDF (28-trade)
+  dashboard_all.pdf            # Module 5 dashboard rendered to PDF (34-trade)
 requirements.txt              # python-stdnum, pycountry, flask, plotly (+ markdown, xhtml2pdf for PDF)
 ```
 
@@ -88,6 +91,15 @@ populated from the section headings, and clickable external URLs in the
 References block. The Word document uses Heading 1 / 2 styles so Word's
 navigation pane works, and includes a Table of Contents field at the top
 (right-click → Update Field to refresh in Word).
+
+To render the Module 5 dashboard to PDF (committed at
+`output/dashboard.pdf` and `output/dashboard_all.pdf`):
+```
+python scripts/build_dashboard_pdf.py
+```
+This drives Microsoft Edge in headless mode so the Plotly JS charts
+finish rendering before the page is printed. Falls back to Chrome if
+Edge isn't installed.
 
 To regenerate the **full 34-trade pipeline** (Deliverable 2 — 28 provided trades + 6
 author-designed trades):
