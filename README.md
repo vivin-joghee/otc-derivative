@@ -7,6 +7,8 @@ This repo contains **Module 1** (Trade Parser & Instrument Classifier),
 Compliance Checker — CFTC + MAS), **Module 4** (written analysis on
 prediction contracts), and **Module 5** (Compliance Dashboard, bonus).
 
+Please also find the link to the presentation here: https://github.com/vivin-joghee/otc-derivative/blob/main/output/Presentation.mp3
+
 ## Layout
 
 ```
