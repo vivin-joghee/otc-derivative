@@ -420,4 +420,3 @@ Validation observations:
 
 No major validation concerns noted at this juncture.
 """
-
