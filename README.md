@@ -222,10 +222,30 @@ committed so the dashboard is browseable without running anything).
 
 The Researcher role — deepening the MAS jurisdictional analysis, designing the six author-added trades (T029–T034) for Deliverable 2, and shaping the Flask dashboard's four required visualisations — was shared across all three team members.
 
-## Acknowledgement
+## AI Acknowledgement
 
-This implementation was developed with AI assistance for ANNA-DSB schema
-exploration, design discussions (matching strategy, status semantics,
-validation scope), and code review. Final design decisions, the alias-free
-heuristic-matching approach, and all integration with the assignment brief
-were author-driven.
+This project was developed with significant assistance from AI tools.
+
+**Claude (Anthropic)** served as the primary coding and writing assistant.
+It helped explore the ANNA-DSB product-definition library, draft initial
+implementations of each module (parser, UPI lookup, compliance checker,
+Flask dashboard), iterate on design decisions (status semantics,
+exact-then-heuristic template matching, deterministic mock UPI hashing,
+per-field audit-trail schema, validation scope), draft the Module 4 policy
+analysis with inline-APA citation integration, and write the technical and
+regulatory report and the presentation speaker notes.
+
+**ChatGPT (OpenAI)** provided a peer review of the Module 4 draft. Its
+five findings — MAS-vs-EU classification clarity, T028 actor coverage,
+ANNA-DSB schema format alignment, UTI namespace proposal, and word budget
+— were addressed before the final version was committed. The review log is
+preserved at [src/module4_review.md](src/module4_review.md).
+
+All substantive design choices were team-owned: selection of MAS as the
+second regulatory regime, the alias-free heuristic-matching approach for
+template lookup, the deterministic mock UPI scheme, the decision to vendor
+the ANNA-DSB library rather than reference it as a submodule, the two
+intentional errors injected in T031 / T032 for Deliverable 2, and the
+framework elements (Contract Scope Limitations, Market Integrity
+Supervision) selected for the §4C operationalisation. Every team member
+can explain any part of the submitted work in a Q&A session.
