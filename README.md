@@ -33,6 +33,7 @@ src/
   presentation_notes.md       # Deliverable 4 — recorded-presentation speaker notes
 scripts/
   build_report_pdf.py         # Renders the Deliverable 3 report to an interactive PDF
+  build_report_docx.py        # Renders the Deliverable 3 report to a Word .docx (via pandoc)
   templates/
     dashboard.html            #     Jinja2 template
 output/
@@ -45,6 +46,7 @@ output/
   compliance_report_all.json  # Module 3 output  (full 34-trade portfolio) — Deliverable 2
   dashboard_all.html          # Module 5 snapshot (full 34-trade portfolio)
   technical_regulatory_report.pdf  # Deliverable 3 — interactive PDF with clickable TOC + bookmarks
+  technical_regulatory_report.docx # Deliverable 3 — Word version with TOC + heading styles
 requirements.txt              # python-stdnum, pycountry, flask, plotly (+ markdown, xhtml2pdf for PDF)
 ```
 
@@ -74,14 +76,18 @@ python src/dashboard.py                           # serves at http://127.0.0.1:5
 python src/dashboard.py --snapshot output/dashboard.html   # render once, no server
 ```
 
-To rebuild the interactive PDF of the technical and regulatory report
-(`output/technical_regulatory_report.pdf` is committed; this regenerates it):
+Deliverable 3 is committed in three formats — the Markdown source at
+`src/technical_regulatory_report.md`, an interactive PDF, and a Word
+document. To regenerate either binary:
 ```
-python scripts/build_report_pdf.py
+python scripts/build_report_pdf.py   # output/technical_regulatory_report.pdf
+python scripts/build_report_docx.py  # output/technical_regulatory_report.docx
 ```
-The PDF carries a clickable table of contents, a bookmarks / outline panel
+The PDF carries a clickable Table of Contents, a bookmarks / outline panel
 populated from the section headings, and clickable external URLs in the
-References block.
+References block. The Word document uses Heading 1 / 2 styles so Word's
+navigation pane works, and includes a Table of Contents field at the top
+(right-click → Update Field to refresh in Word).
 
 To regenerate the **full 34-trade pipeline** (Deliverable 2 — 28 provided trades + 6
 author-designed trades):
